@@ -6,6 +6,7 @@ const Footer = () => {
 
     
     return (
+      /* Testing commit changed git settings */
 
       <div className="footer">
           <div className="header">
