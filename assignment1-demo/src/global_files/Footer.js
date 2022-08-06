@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Header from "./Header.js";
 import { Link } from 'react-router-dom';
+import './Footer.css'
 
 const Footer = () => {
 

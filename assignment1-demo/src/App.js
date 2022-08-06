@@ -20,13 +20,13 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <div className="container">
+     
 
         <Routes>
           <Route path = "" element={<MainContent />}></Route>
-          <Route path = "" element={<Signin />}></Route>
+          <Route path = "/Signin" element={<Signin />}></Route>
         </Routes>
-      </div>
+  
 
       <Footer />
     
