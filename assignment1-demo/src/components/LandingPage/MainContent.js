@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
 
+
 const Main = () => {
 
     return (
@@ -21,19 +22,10 @@ const Main = () => {
 
             <div>
               <h3 className="information">Information</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                Duis aute irure dolor in reprehenderit in voluptate velit 
-                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                occaecat cupidatat non proident, sunt in culpa qui officia 
-                deserunt mollit anim id est laborum.
+              <p> Hi Team, welcome to LAN (Loop Agile Now). We have made this social platform to improve and centralise our communications.
+                We decided to make our own platform to ease flow of communications, keep things documentated and to prevent ethical issues
+                that may have arised by using an external platform. 
               </p>
-            </div>
-            
-            <div className="sign-up">
-              <Link to="/signin" style={{ textDecoration: 'none' }}><button><p>Sign Up</p></button></Link>
             </div>
 
           </div>

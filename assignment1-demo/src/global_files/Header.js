@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import Signin from './Signin';
+import Sigin from '../components/SignInPage/Signin'
 import { BrowserRouter, NavLink, Routes, Route } from 'react-router-dom';
-
-
+import './Header.css'
 const Header = () => {
 
 
@@ -25,8 +24,6 @@ const Header = () => {
           <ul>
            <Link to="/signin" style={{ textDecoration: 'none' }}><li>sign in</li></Link>
            <li>sign up</li>
-           <li>post</li>
-           <li>profile page</li>
           </ul>
         
        </div>

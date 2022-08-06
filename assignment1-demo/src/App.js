@@ -1,47 +1,37 @@
 import React, { useState, useEffect } from "react";
-import './App.css';
-import Header from "./components/Header";
-import MainContent from "./components/MainContent"
-import Footer from "./components/Footer";
+import Header from "./global_files/Header";
+import MainContent from "./components/LandingPage/MainContent"
+import Footer from "./global_files/Footer";
 import { BrowserRouter, NavLink, Routes, Route } from 'react-router-dom';
-import Signin from "./components/Signin"
+import Signin from "./components/SignInPage/Signin"
+
+
+function notes() {
+
+  // Functions to support conditional rendering which
+  // return specific pages from user-defined components
+
+  // State: bools could be used to guide conditional rendering.
+  // onClick jsx-function: used to set bool
+  
+}
 
 function App() {
-
-  function notes() {
-
-    // Functions to support conditional rendering which
-    // return specific pages from user-defined components
-
-    // State: bools could be used to guide conditional rendering.
-    // onClick jsx-function: used to set bool
-    
-  }
-
-
-
   return (
-
-    <div className="body">
-      
-      <BrowserRouter>
-
-        <Header></Header> 
-
-        {/* <MainContent></MainContent> */}
-
+    <BrowserRouter>
+      <Header />
+      <div className="container">
 
         <Routes>
-          <Route path="" element={<MainContent/>}></Route>
-          <Route path="/signin" element={<Signin/>}></Route>
+          <Route path = "" element={<MainContent />}></Route>
+          <Route path = "" element={<Signin />}></Route>
         </Routes>
+      </div>
 
-        <Footer></Footer>
-      
-      </BrowserRouter>
+      <Footer />
+    
+    </BrowserRouter>
 
-      
-    </div>
 
   );
 }
