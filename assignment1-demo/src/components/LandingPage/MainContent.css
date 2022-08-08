@@ -1,65 +1,90 @@
 
-/* Center content */
+.text-info{
+  text-align: center;
+  padding: 16px;
+  font-size: 36px;
+  font-weight: #1F2937;
+}
 
-.info-center-main {
-    display: flex;
-    flex-direction: row;
-    gap: 130px;
-    margin: 100px 300px 10px 300px;
-    justify-content: space-around;
-  }
+
+.boxes-container{
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+  gap: 52px;
+}
+
+.boxes-info img {
+  width: 200px;
+  height: 200px;
+  border: solid pink;
+}
+
+
+.text{
+  text-align: center;
+  max-width: 230px;
+}
+
+.qoute-info{
+  margin-top: 100px;
+  background-color: #E5E7EB;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 35vh;
+}
+
+.qoute, .qoute-author{
+  color: #1F2937;
+}
+
+
+.qoute{
+  text-align: center;
+  width: 60vh;
+  font-size: 36px;
+  font-style: italic ;
+}
+
+.qoute-author{
+  padding-left: 650px;
+  display: flex;
+  font-weight: bold;
+}
+
+
+.call-to-action{
+  width: 60%;
+  margin-top: 100px;
+  background-color: #3882F6;
+  display: flex;
+  align-items: center;
+  margin-left: 20%;
+  justify-content: space-around;
   
-  .center-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: 50px;
-  }
-  
-  .information {
-    font-weight: bolder;
-    font-size: xx-large;
-  }
-  
-  .sign-up {
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-  }
-  
-  .sign-up button {
-    border: none;
-    background-color: rgb(62, 155, 191);
-    padding:  10px 40px;
-    border-radius: 10px;
-  }
-  
-  .sign-up a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    font-size: large;
-  }
-  
-  
-  /* column orientation, from parents definition */
-  .posts {
-    display: flex;
-    flex-direction: column;
-    margin-top: 100px;
-    gap: 70px;
-    
-  }
-  
-  .some-post{
-    padding: 50px;
-    margin: 0px 100px 0px 100px;
-    background-color: rgb(227, 227, 213);
-    border-radius: 5px;
-    box-shadow: 4px 3px 8px 1px #969696;
-  }
-  
-  .some-post h3 {
-    font-size: x-large;
-  }
-  
+}
+
+.content{
+  color: white;
+}
+
+.content #bolde{
+  font-size: 18px;
+}
+
+
+#sign-up{
+  color: white;
+  font-weight: bold;
+}
+
+.call-to-action button{
+  background: #3882F6;
+  border-radius: 5px 5px 5px 5px;
+  border-color: white;
+  padding: 5px;
+  width: 100px;
+  height: 30px;
+}

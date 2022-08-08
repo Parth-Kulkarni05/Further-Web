@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 import './MainContent.css'
 
 const Main = () => {
@@ -8,72 +8,66 @@ const Main = () => {
 
         <div className="main-content">
 
-        {/* 
-        
-        Would contain the following content:
-          - Information about the website
-          - sign-up button (text for user to sign up)
+                    
+            <div class = "text-info">What makes LAN better, for us and you?</div>
 
-        */}
+            <div class = "boxes-container">
 
-        <div className="center-main">
+            <div class = "boxes-info">
 
-          <div className="info-center-main">
+                <img src= "/images/Landing_Page/better_com.jpg" className="logo" alt =""></img>
+                <div class = "text">Improved Communication</div>
 
-            <div>
-              <h3 className="information">Information</h3>
-              <p> Hi Team, welcome to LAN (Loop Agile Now). We have made this social platform to improve and centralise our communications.
-                We decided to make our own platform to ease flow of communications, keep things documentated and to prevent ethical issues
-                that may have arised by using an external platform. 
-              </p>
             </div>
 
-          </div>
+            <div class = "boxes-info">
 
-          <div className="posts">
-            <h1>Posts from the community</h1>
+                <img src = "/images/Landing_Page/better_doc.jpg" className="logo" alt = ""></img>
+                <div class = "text">Improved Documentation</div>
 
-            <div className="some-post">
-              <h3>Some post</h3>
-              <small>day-month-time</small>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitat Duis aute irure dolor in reprehenderit in voluptate velit 
-                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                occaecat cupidatat non proident, sunt in culpa qui officia 
-                deserunt mollit anim id est laborum.
-              </p>
             </div>
-            <div className="some-post">
-            <h3>Some post</h3>
-            <small>day-month-time</small>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitat Duis aute irure dolor in reprehenderit in voluptate velit 
-                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                occaecat cupidatat non proident, sunt in culpa qui officia 
-                deserunt mollit anim id est laborum.
-              </p>
+
+            <div class = "boxes-info">
+
+                <img src = "/images/Landing_Page/privacy.jpg" alt = ""></img>
+                <div class = "text">Improved User/Org Privacy</div>
+
             </div>
-            <div className="some-post">
-            <h3>Some post</h3>
-            <small>day-month-time</small>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitat Duis aute irure dolor in reprehenderit in voluptate velit 
-                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                occaecat cupidatat non proident, sunt in culpa qui officia 
-                deserunt mollit anim id est laborum.
-              </p>
+
+            <div class = "boxes-info">
+
+                <img src = "/images/Landing_Page/better_collab.jpg" alt = ""></img>
+                <div class = "text">Improved Collaboration</div>
+
             </div>
-          
-          </div>
+            </div>
 
 
-        </div>
+
+            <div class = 'qoute-info'>
+
+            <div class = "qoute">Like a human being, a company has to have an internal communication mechanism... to coordinate its actions</div>
+            <div class = "qoute-author">-Bill Gates, Founder of Microsoft</div>
+
+            </div>
 
 
-        </div>
+
+            <div class = "call-to-action">
+
+            <div class = "content"> 
+                <p id = 'bolde'><b>Call to action! It's time!</b></p>
+                <p> SIgn up for our product by clicking that button right over there!</p>
+            </div>
+
+            <div class = "sign-up-button">
+                <button id = "sign-up"> Sign up</button>
+            </div>
+
+            </div>
+
+    </div>
+
 
     )
 }

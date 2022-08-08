@@ -8,28 +8,38 @@ const Header = () => {
 
     return (
 
-        <div className="header">
-          {/* Would contain links to other pages such as: 
-            - login page
-            - sign-up page
-            - sign-in page
-            - profile page 
-            - (extension; 
-              - profile management
-              - post)
-          */}
+      <div class = "header">
 
-          <Link to="" style={{ textDecoration: 'none' }}><h1 className="logo">Logo</h1></Link>
+      <div class = "navbar-container">
 
-          <ul>
-           <Link to="/signin" style={{ textDecoration: 'none' }}><li>sign in</li></Link>
-           <li>sign up</li>
+      <div class = "nav-logo">
+          <img src = "/images/Header/header_logo.png" alt=""></img>
+      </div>
+
+      <ul class = "nav-links">
+              <li>Sign Up</li>
+              <li>Sign In</li>
           </ul>
-        
-       </div>
+      
+  </div>
+  
+  <div class = "webinfo-container">
+
+      <div class="website-information"> 
+          <div class = "text-small">Hi Team, welcome to LAN (Loop Agile Now). We have made this social platform to improve and centralise our communications. We decided to make our own platform to ease flow of communications, keep things documentated and to prevent ethical issues that may have arised by using an external platform.</div>
+      </div>
 
 
-    )
+      <div class="placeholder">
+        <img src = "/images/Landing_Page/placeholder.jpg" alt=""></img>
+      </div>
+    
+    </div>
+
+    </div>
+
+
+    );
 }
 
 export default Header;

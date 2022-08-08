@@ -1,6 +1,9 @@
-.footer {
-    margin-top: auto;
-    background-color: rgb(80, 80, 88);
-    width: 100%;
-  }
-  
+.footer{
+  color: white;
+  margin-top: 100px;
+  height: 100px;
+  display: flex;
+  background-color: #1F2937;
+  justify-content: center;
+  align-items: center;
+}

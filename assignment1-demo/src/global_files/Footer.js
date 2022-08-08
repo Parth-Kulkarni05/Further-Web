@@ -9,21 +9,9 @@ const Footer = () => {
       /* Testing commit changed git settings */
 
       <div className="footer">
-          <div className="header">
+        <p>Under Development</p>
 
-            {/* 
-            */}
-
-            <ul>
-            <Link to="/signin" style={{ textDecoration: 'none' }}><li>sign in</li></Link>
-            <li>sign up</li>
-            <li>post</li>
-            <li>profile page</li>
-            </ul>
-
-        </div>
-      </div>
-      
+        </div>  
 
     )
 }
