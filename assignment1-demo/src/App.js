@@ -3,28 +3,19 @@ import Header from "./global_files/Header";
 import MainContent from "./components/LandingPage/MainContent"
 import Footer from "./global_files/Footer";
 import { BrowserRouter, NavLink, Routes, Route } from 'react-router-dom';
-import Signin from "./components/SignInPage/Signin"
-
-
-function notes() {
-
-  // Functions to support conditional rendering which
-  // return specific pages from user-defined components
-
-  // State: bools could be used to guide conditional rendering.
-  // onClick jsx-function: used to set bool
-  
-}
+import Signup from "./components/SignUpPage/Signup"
+import Sigin from "./components/SignInPage/Signin"
 
 function App() {
   return (
     <BrowserRouter>
-      <Header />
-     
+
+        <Header />
 
         <Routes>
-          <Route path = "" element={<MainContent />}></Route>
-          <Route path = "/Signin" element={<Signin />}></Route>
+          <Route  path = "/" element={<MainContent />} Footer = {null} ></Route>
+          <Route  path = "/Signup" element={<Signup />}></Route>
+          <Route  path = "/Sigin" element={<Sigin />}></Route>
         </Routes>
   
 

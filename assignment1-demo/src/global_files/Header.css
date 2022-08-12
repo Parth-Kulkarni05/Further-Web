@@ -7,67 +7,38 @@ body {
   flex-direction: column;
 }
 
-ul{
-  list-style: none;
-}
-
-.navbar-container,.first-content{
-  background-color: #1F2937;
-  color: white;
-}
-
-
 .navbar-container{
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 16px;
-
-}
-
-.nav-logo{
-  display: flex;
-  margin: 0px;
-  padding: 0px;
-  align-items: center;
-
+  background-color: #1F2937;
+  color: white;
 }
 
 .nav-links{
+  list-style: none;
   display: flex;
-  margin: 0px;
-  padding: 0px;
-  gap: 8px;
+  padding: 5px;
+  gap: 30px;
+  font-size: 20px;
 }
 
-.webinfo-container{
-  background-color: #1F2937;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+.nav-links .links{
+  color: white;
+  text-decoration: none;
 }
 
-.webinfo-container img{
-  height: 250px;
+.nav-links :hover, .nav-links :active{
+   color: pink;
+   font-size: 150%;
 }
-
-
-.website-information{
-  padding: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  
-}
-
 
 .text-small{
-  display: flex;
+  display: flex; 
   color: white;
   font-size: 18px;
   width: 49vh;
-  text-align: left;
 }
 
 .buttons button{

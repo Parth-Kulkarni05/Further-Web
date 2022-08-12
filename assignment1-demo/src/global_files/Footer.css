@@ -4,6 +4,11 @@
   height: 100px;
   display: flex;
   background-color: #1F2937;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+}
+
+.student-info, .lan-logo{
+  display: flex;
+  padding: 8px;
 }

@@ -7,6 +7,29 @@
 }
 
 
+.webinfo-container{
+  background-color: #1F2937;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.webinfo-container img{
+  height: 250px;
+}
+
+
+.website-information{
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  
+}
+
+
+
 .boxes-container{
   margin-top: 35px;
   display: flex;

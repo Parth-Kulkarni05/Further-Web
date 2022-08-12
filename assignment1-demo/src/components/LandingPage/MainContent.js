@@ -8,8 +8,23 @@ const Main = () => {
 
         <div className="main-content">
 
-                    
-            <div class = "text-info">What makes LAN better, for us and you?</div>
+            <div class = "webinfo-container">
+
+      <div class="website-information"> 
+          <div class = "text-small">Hi Team, welcome to LAN (Loop Agile Now). 
+          We have made this social platform to improve and centralise our communications. 
+          We decided to make our own platform to ease flow of communications, keep things documentated 
+          and to prevent ethical issues that may have arised by using an external platform.</div>
+      </div>
+
+
+      <div class="placeholder">
+        <img src = "/images/Landing_Page/placeholder.jpg" alt=""></img>
+      </div>
+    
+    </div>
+        
+    <div class = "text-info">What makes LAN better, for us and you?</div>
 
             <div class = "boxes-container">
 
@@ -56,12 +71,12 @@ const Main = () => {
             <div class = "call-to-action">
 
             <div class = "content"> 
-                <p id = 'bolde'><b>Call to action! It's time!</b></p>
-                <p> SIgn up for our product by clicking that button right over there!</p>
+                <p id = 'bolde'><b>It's time to join up!</b></p>
+                <p> Sign up to the company's new platform product by clicking that button right over there!</p>
             </div>
 
             <div class = "sign-up-button">
-                <button id = "sign-up"> Sign up</button>
+                <Link to = "/Signup"><button id = "sign-up"> Sign up</button></Link>
             </div>
 
             </div>
