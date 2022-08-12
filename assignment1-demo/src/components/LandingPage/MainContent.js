@@ -2,13 +2,43 @@ import React, { useState, useEffect } from "react";
 import {Link} from 'react-router-dom';
 import './MainContent.css'
 
-const Main = () => {
+const Main = (user) => {
+
+
+    // Main page should change in reaction to user logging in
+
+    const [login, setLogin] = useState(localStorage.getItem("Login_Status"))
+
+
+    function toggleSignUpLink() {
+      // Makes sure that once the user logs in, they can't Sign Up
+      if (login === "true") {
+        return 
+      }
+      else {
+    
+        return <Link to="/Signup"><button id = "sign-up"><p>Sign Up</p></button></Link>
+      }
+    }
+
+    function toggleName() {
+
+      if (login === "true") {
+        return <h1>Welcome, {user.userInfo.firstname}</h1>
+      }
+      else {
+        return
+      }
+    }
+
 
     return (
 
         <div className="main-content">
 
             <div class = "webinfo-container">
+
+            {toggleName()}
 
       <div class="website-information"> 
           <div class = "text-small">Hi Team, welcome to LAN (Loop Agile Now). 
@@ -76,7 +106,7 @@ const Main = () => {
             </div>
 
             <div class = "sign-up-button">
-                <Link to = "/Signup"><button id = "sign-up"> Sign up</button></Link>
+                {toggleSignUpLink()}
             </div>
 
             </div>

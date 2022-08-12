@@ -4,17 +4,7 @@ import './Signin.css'
 
 const Signin = () => {
 
-        // HTML form notes
-
-    // If the name attribute is omitted, the 
-    // value of the input field will not be sent at all.
-
-
-    // - Setting variables for submit element, first and last name
-    // - Validating user data from input fields
-    // - Creating logic to store information from form to html local storage
-
-
+    
     
 
 
