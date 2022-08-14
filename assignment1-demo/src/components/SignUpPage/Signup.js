@@ -1,7 +1,35 @@
-import { BrowserRouter, NavLink, Routes, Route, useNavigate } from 'react-router-dom';
-import React, { useState, useEffect, Redirect, Navigate  } from "react";
+import { BrowserRouter, NavLink, Routes, Route, useNavigate, Link } from 'react-router-dom';
+import React, { useState, useEffect, Redirect, Navigate} from "react";
+import './Signup.css'
+/* eslint-disable no-useless-escape */
 
-const SignUp = (props) => {
+
+
+/* MARKER INSTRUCTIONS / CODE REFERENCES:
+
+1) 
+    So this contains To check a password between 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter
+    Sourced regex expression from: https://www.w3resource.com/javascript/form/password-validation.php
+
+2) 
+    In order to validate our emails we have used the following regex expression and have got it from the following website:
+
+    regex-expression: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+    regex-email sourced from: https://www.w3resource.com/javascript/form/email-validation.php#:~:text=To%20get%20a%20valid%20email,%5D%2B).
+
+3) 
+    In order to validate our first name and last name to only contain letters we have used the following regex expression and got it from the following web:
+    
+    regex-expression: /^[a-zA-Z]+$/
+    regex-letter only expression sourced from: https://stackoverflow.com/questions/3073176/javascript-regex-only-english-letters-allowed
+    
+
+
+*/
+
+
+const SignUp = ({onLogin}) => {
 
     // HTML form notes
 
@@ -22,12 +50,13 @@ const SignUp = (props) => {
     const [valid, setValid] = useState(null)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
     let navigate = useNavigate();
 
 
         // Saves input in state variables
     function firstnameinput(event) {
-        setfirstname(event.target.value)
+         setfirstname(event.target.value);
     }
 
     function lastnameinput(event) {
@@ -42,27 +71,54 @@ const SignUp = (props) => {
         setPassword(event.target.value)
     }
 
+    function emailError() {
+        console.log("yeh error mate email")
+        if ((valid === false) && ((email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) === null))){
+            return (
+                <div className='AlertMessage'>Error: Make sure email formatting is correct </div>
+            )
+        }     
+    }
+
+    function nameError(nameType){
+        if ((valid === false) && ((nameType.match(/^[a-zA-Z]+$/) === null))){
+            return (
+                <div className='AlertMessage'>Error: Remove numbers or symbols from name</div>
+            )
+
+            }     
+    }
+
+    function passwordError(){
+        if ((valid === false) && ((password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/) === null))){
+            return (
+                <div className='AlertMessage'>Error: Passwords should contain 8 to 15 characters, one uppercase letter, one numeric digit and one special character. </div>
+            )
+
+            }
+    }
+
+
+
+
         // Validates input
     function validate() {
 
-        if (firstname && lastname && email && email.includes("@") && password.length >= 8) {
-            setValid(true)  
+        /* eslint-disable no-useless-escape */
+
+
+        if(email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) && firstname.match(/^[a-zA-Z]+$/) && lastname.match(/^[a-zA-Z]+$/) 
+                        && password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/))
+        {
+            setValid(true)
+            
+            console.log("Login set to true")
+            
         }
         else {
             setValid(false)
+
         }   
-    }
-
-    function autocorrect() {
-
-        if (valid) {
-            return
-        }
-        else if (valid === false) {
-            return (
-                <div>Make sure email is correct, password is strong and fields are not empty</div>
-            )
-        }
     }
 
     function submit() {
@@ -72,6 +128,7 @@ const SignUp = (props) => {
         
         redirect()
 
+
     }
 
 
@@ -79,18 +136,17 @@ const SignUp = (props) => {
 
         if (valid) {
             // Submits data to localstorage (if valid)
-            localStorage.setItem(email, JSON.stringify({
-                firstname: firstname,
-                lastname: lastname,
-                email: email,
-                password: password
+
+            localStorage.setItem(email,JSON.stringify({
+                firstname:firstname,
+                lastname:lastname,
+                email:email,
+                password:password
             }))
 
-            // console.log(localStorage)
-            localStorage.setItem("Login_Status", "true")
-            localStorage.setItem("LoggedIn_User", email)
-            props.refresh()     // Refers to toggleRefresh, to allow for refresh in app.js
-            navigate("/")
+            onLogin(email)
+
+            navigate('/Profile')
         }
         else {
             localStorage.setItem("Login_Status", "false")
@@ -99,36 +155,47 @@ const SignUp = (props) => {
 
 
     return (
-        
-        <div className="signin">
-            
-            <h1>Sign-Up Form</h1>
-            
-            {autocorrect()}
 
-            <div className="form">
 
-                <form>
-                    <label for="email">Email</label>
-                    <input type='text' id="email-text" onChange={emailinput} required pattern=''></input>
+        <div className="signup-text">
+            
+            <h1 className = "siginup-Title">Sign-Up Form</h1>
+
+            <h4> Already have an account with LAN? <Link to = '/LoginPage'>Log in here</Link></h4>
+            
+
+            <div className="signup-form">
+
+                <form className = "signup-box">
+                    <label htmlFor="email">Email Address: </label>
+                    <input type='text' id="email-text" onChange={emailinput} required placeholder='John82@test.com.au'></input>
+                    {emailError()}
+                    
+
+
                 </form>
 
-                <form>
-                    <label for="first-name">First Name</label>
-                    <input type='text' id="first-name-text" onChange={firstnameinput} required></input>
+                <form className = "signup-box">
+                    <label htmlFor="first-name">First Name: </label>
+                    <input type='text' id="first-name-text" onChange={firstnameinput} required placeholder='John'></input>
+                    {nameError(firstname)}
+
                 </form>
                 
-                <form>
-                    <label for="last-name">Last Name</label>
-                    <input type='text' id="last-name-text" onChange={lastnameinput} required></input>
+                <form className = "signup-box">
+                    <label htmlFor="last-name">Last Name: </label>
+                    <input type='text' id="last-name-text" onChange={lastnameinput} required placeholder='Patel'></input>
+                    {nameError(lastname)}
+
                 </form>
 
-                <form>
-                    <label for="password">Password</label>
-                    <input type='password' id="password-text" onChange={passwordinput} required></input>
+                <form className = "signup-box">
+                    <label htmlFor="password">Password: </label>
+                    <input type='password' id="password-text" onChange={passwordinput} required placeholder='Enter a strong password'></input>
+                    {passwordError()}
                 </form>
                 
-                <button type="submit" onClick={submit} className="submit-button">Submit</button>
+                <button type="submit" onClick ={(e) => submit(e)} className="submit-button">Sign up</button>
             </div>
 
             
@@ -136,6 +203,8 @@ const SignUp = (props) => {
             {/* {redirect()} */}
             
         </div>
+
+
       
 
     )

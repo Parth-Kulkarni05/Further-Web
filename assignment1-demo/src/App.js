@@ -3,17 +3,28 @@ import MainContent from "./components/LandingPage/MainContent"
 import Footer from "./global_files/Footer";
 import { BrowserRouter, NavLink, Routes, Route } from 'react-router-dom';
 import SignUp from "./components/SignUpPage/SignUp"
-import SignIn from "./components/SignInPage/Signin"
+import LoginPage from "./components/LoginPage/Login"
+import Profile from "./components/Profile_Page/Profile";
 import { useState } from "react";
 
 function App() {
-
-  const [refreshed, setRefreshed] = useState(null)
-  const [loggedInUser, setLoggedInUser] = useState(localStorage.getItem("LoggedIn_User"))   // User's email
-
-  const userInfo = JSON.parse(localStorage.getItem(loggedInUser))
+  const [loggedInUser, setLoggedInUser] = useState(localStorage.getItem("loggedInUser"))
   
 
+  const userInfo = JSON.parse(localStorage.getItem(loggedInUser))
+
+  const onLogin = (email) => {
+    setLoggedInUser(email);
+    localStorage.setItem("loggedInUser" , email)
+  }
+
+  const onLogout = () => {
+    setLoggedInUser(null);
+    localStorage.removeItem("loggedInUser")
+  }
+
+  
+  /*
 
   function toggleRefresh() {    // To refresh app.js for header reload
     setRefreshed(true)
@@ -25,28 +36,31 @@ function App() {
       setRefreshed(false)     // set to false to avoid infinite refresh
     }
   }
-
+  
+  */
 
   return (
 
-    <div className="body">
       
       <BrowserRouter>
 
-        <Header></Header> 
+        <Header loggedInUser = {loggedInUser} onLogout = {onLogout} />
 
         <Routes>
-          <Route path="/" element={<MainContent userInfo={userInfo}/>}></Route>
-          <Route path="/SignUp" element={<SignUp refresh={toggleRefresh}/>}></Route>   {/* Sign in only renders the maincontent page */}
-        </Routes>
+          <Route path="/" element={<MainContent/>}></Route>
+          <Route path="/SignUp" element={<SignUp onLogin = {onLogin} />}></Route>           
+          <Route path="/LoginPage" element={<LoginPage onLogin = {onLogin} />}></Route>
+          <Route path="/Profile" element={<Profile loggedInUser = {loggedInUser} />}></Route>
 
-        {refreshPage()}
+        </Routes>
 
         <Footer></Footer>
       
       </BrowserRouter>
 
-    </div>
+
+
+
 
   );
 }

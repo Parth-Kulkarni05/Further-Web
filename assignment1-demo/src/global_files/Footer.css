@@ -1,14 +1,16 @@
-.footer{
-  color: white;
-  margin-top: 100px;
-  height: 100px;
+.footer {
   display: flex;
-  background-color: #1F2937;
-  justify-content: space-around;
-  align-items: center;
+  padding: 20px;
+  margin-top: auto;
+  background-color: lightgoldenrodyellow;
+  justify-content: space-between;
+  margin-top: 15px;
 }
 
-.student-info, .lan-logo{
+ul {
   display: flex;
-  padding: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 16px
 }

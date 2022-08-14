@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {Link} from 'react-router-dom';
+import Header from "../../global_files/Header";
+import Footer from "../../global_files/Footer";
 import './MainContent.css'
 
 const Main = (user) => {
@@ -16,7 +18,6 @@ const Main = (user) => {
         return 
       }
       else {
-    
         return <Link to="/Signup"><button id = "sign-up"><p>Sign Up</p></button></Link>
       }
     }
@@ -31,85 +32,81 @@ const Main = (user) => {
       }
     }
 
-
     return (
 
         <div className="main-content">
 
-            <div class = "webinfo-container">
+            <div className = "webinfo-container">
 
             {toggleName()}
 
-      <div class="website-information"> 
-          <div class = "text-small">Hi Team, welcome to LAN (Loop Agile Now). 
+      <div className="website-information"> 
+          <div className = "text-small">Hi Team, welcome to LAN (Loop Agile Now). 
           We have made this social platform to improve and centralise our communications. 
           We decided to make our own platform to ease flow of communications, keep things documentated 
           and to prevent ethical issues that may have arised by using an external platform.</div>
       </div>
 
 
-      <div class="placeholder">
+      <div className="placeholder">
         <img src = "/images/Landing_Page/placeholder.jpg" alt=""></img>
       </div>
     
     </div>
         
-    <div class = "text-info">What makes LAN better, for us and you?</div>
+    <div className = "text-info">What makes LAN better, for us and you?</div>
 
-            <div class = "boxes-container">
+            <div className = "boxes-container">
 
-            <div class = "boxes-info">
+            <div className = "boxes-info">
 
                 <img src= "/images/Landing_Page/better_com.jpg" className="logo" alt =""></img>
-                <div class = "text">Improved Communication</div>
+                <div className = "text">Improved Communication</div>
 
             </div>
 
-            <div class = "boxes-info">
+            <div className = "boxes-info">
 
                 <img src = "/images/Landing_Page/better_doc.jpg" className="logo" alt = ""></img>
-                <div class = "text">Improved Documentation</div>
+                <div className = "text">Improved Documentation</div>
 
             </div>
 
-            <div class = "boxes-info">
+            <div className = "boxes-info">
 
                 <img src = "/images/Landing_Page/privacy.jpg" alt = ""></img>
-                <div class = "text">Improved User/Org Privacy</div>
+                <div className = "text">Improved User/Org Privacy</div>
 
             </div>
 
-            <div class = "boxes-info">
+            <div className = "boxes-info">
 
                 <img src = "/images/Landing_Page/better_collab.jpg" alt = ""></img>
-                <div class = "text">Improved Collaboration</div>
+                <div className = "text">Improved Collaboration</div>
 
             </div>
             </div>
 
+            <div className = 'qoute-info'>
 
-
-            <div class = 'qoute-info'>
-
-            <div class = "qoute">Like a human being, a company has to have an internal communication mechanism... to coordinate its actions</div>
-            <div class = "qoute-author">-Bill Gates, Founder of Microsoft</div>
+            <div className = "qoute">Like a human being, a company has to have an internal communication mechanism... to coordinate its actions</div>
+            <div className = "qoute-author">-Bill Gates, Founder of Microsoft</div>
 
             </div>
 
+            <div className = "call-to-action">
 
-
-            <div class = "call-to-action">
-
-            <div class = "content"> 
+            <div className = "content"> 
                 <p id = 'bolde'><b>It's time to join up!</b></p>
                 <p> Sign up to the company's new platform product by clicking that button right over there!</p>
             </div>
 
-            <div class = "sign-up-button">
+            <div className = "sign-up-button">
                 {toggleSignUpLink()}
             </div>
 
             </div>
+
 
     </div>
 

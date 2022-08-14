@@ -8,18 +8,18 @@ const Footer = () => {
     return (
       /* Testing commit changed git settings */
 
-      <div className="footer">
-        <div className="student-info">
-          <p> Developed by:</p>
-          <p> Parth Kulkarni - s3897572</p>
-          <p>, Natnael Giazw - s3897250</p>
-        </div>
+      
+      <div className ="footer">
+        <ul className="left-side">
+          <li> Developed by: Parth Kulkarni (s3897572) </li>
+          <li> Natnael Giazw (s3897250) </li>
+        </ul>
+        <ul className="right-side">
+          <li>Assignment 1 - Further Web Programming</li>
+        </ul>
+      
+      </div>
 
-        <div className="lan-logo">
-        <Link to = "/"><img src = "/images/Header/header_logo.png" alt=""></img></Link>
-        </div>
-
-      </div>    
 
     )
 }
