@@ -24,7 +24,7 @@ function Login ({onLogin}){
     function Error() {
         if ((valid === false)){
             return (
-                <div className='AlertMessage'>Error: Incorrect Email and Password Combination </div>
+                <div className='AlertMessage'>Error: Incorrect Email or Password</div>
             )
         } 
         }  
@@ -50,16 +50,12 @@ function Login ({onLogin}){
                 if (email === key_local_storage && password === json_parsed['password']){
                     key_local_storage = true
                     setValid(true)
-
+                } else{
+                    setValid(false)
                 }
             }
 
         }
-
-        if (key_local_storage === null){
-            setValid(false)
-        }
-
 
         }   
 
@@ -99,7 +95,7 @@ function Login ({onLogin}){
 
                 <form className = "login-box">
                     <label htmlFor="email">Email Address: </label>
-                    <input type='text' id="email-text" onChange={emailinput} required pattern='' placeholder='John82@test.com.au'></input>
+                    <input type='text' id="email-text" onChange={emailinput} required placeholder='John82@test.com.au'></input>
                     {Error()}
                 </form>
 
