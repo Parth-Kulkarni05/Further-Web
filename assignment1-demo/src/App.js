@@ -5,7 +5,10 @@ import { BrowserRouter, NavLink, Routes, Route } from 'react-router-dom';
 import SignUp from "./components/SignUpPage/SignUp"
 import LoginPage from "./components/LoginPage/Login"
 import Profile from "./components/Profile_Page/Profile";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react";
+
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState(localStorage.getItem("loggedInUser"))
@@ -23,26 +26,12 @@ function App() {
     localStorage.removeItem("loggedInUser")
   }
 
-  
-  /*
-
-  function toggleRefresh() {    // To refresh app.js for header reload
-    setRefreshed(true)
-  }
-
-  function refreshPage() {
-    if (refreshed) {
-      window.location.reload()
-      setRefreshed(false)     // set to false to avoid infinite refresh
-    }
-  }
-  
-  */
 
   return (
-
       
       <BrowserRouter>
+
+        <ToastContainer position="top-center" theme="colored" autoClose={2000} />
 
         <Header loggedInUser = {loggedInUser} onLogout = {onLogout} />
 

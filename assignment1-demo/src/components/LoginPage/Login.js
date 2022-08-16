@@ -1,6 +1,8 @@
 /* eslint-disable no-useless-escape */
 import { BrowserRouter, NavLink, Routes, Route, useNavigate, Link } from 'react-router-dom';
 import React, { useState, useEffect, Redirect, Navigate} from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './Login.css';
 
 function Login ({onLogin}){
@@ -27,7 +29,18 @@ function Login ({onLogin}){
                 <div className='AlertMessage'>Error: Incorrect Email or Password</div>
             )
         } 
-        }  
+        } 
+    
+    
+    function success() {
+        if (valid === true){                
+            toast.success('Log-In Sucessful', {
+                toastId: 'success1',
+            })
+    }
+    }
+        
+
 
         // Validates input
     function validate() {
@@ -50,12 +63,17 @@ function Login ({onLogin}){
                 if (email === key_local_storage && password === json_parsed['password']){
                     key_local_storage = true
                     setValid(true)
-                } else{
-                    setValid(false)
+                    console.log("Login Sucessful")
+                    break
                 }
             }
 
         }
+
+        if (key_local_storage !== true){
+            setValid(false)
+        }
+
 
         }   
 
@@ -63,9 +81,6 @@ function Login ({onLogin}){
         // console.log(firstname, lastname + '\n Soon to validate')
 
         validate()
-        
-        redirect()
-
 
     }
 
@@ -107,6 +122,12 @@ function Login ({onLogin}){
                 
                 <button type="submit" onClick ={(e) => submit(e)} className="submit-button">Log in</button>
             </div>
+
+
+            {success()}
+       
+            {redirect()}
+
 
             
             {/* <button onClick={props.stuff}></button> */}
