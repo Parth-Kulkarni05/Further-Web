@@ -5,6 +5,8 @@ import './Header.css'
 
 const Header = ({loggedInUser, onLogout}) => {
 
+    // Show account status in the header.
+
      return (
 
       <div className = "navbar-container">
@@ -20,7 +22,12 @@ const Header = ({loggedInUser, onLogout}) => {
               <Link to = "/" className="links"><li onClick={() => onLogout()}>Sign out</li></Link>
               <Link to = "/Profile" className="links"><li>Profile Managment</li></Link>
                </div>
+
+              <div>
+                {}
+              </div>
             </ul>
+            
               
         ) :
             <ul className = "nav-links">

@@ -1,0 +1,66 @@
+
+.outer-profile {
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+
+h1 {
+    font-weight: 500;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 50px 80px 200px 80px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 10px #ccc;
+}
+
+.profile-view {
+    display: flex;
+    gap: 40px;
+    font-weight: bold;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-weight: 100;
+    font-size: large;
+    margin-bottom: 10px;
+}
+
+
+.profile-options {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.profile-icons {
+    display: flex;
+}
+
+.icon {
+    width: 25px;
+}
+
+button {
+    border: none;
+    background-color: white;
+}
+
+button:hover {
+    padding: 4px;
+}
+
+img {
+    width: 90px;
+    height: auto;
+    align-self: center;
+    border-radius: 5px;
+}
