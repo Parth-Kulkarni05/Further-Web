@@ -8,6 +8,7 @@ import Profile from "./components/Profile_Page/Profile";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react";
+import ProfileManage from "./components/Profile_Managemntt/profile_managment";
 
 
 function App() {
@@ -36,10 +37,11 @@ function App() {
         <Header loggedInUser = {loggedInUser} onLogout = {onLogout} />
 
         <Routes>
-          <Route path="/" element={<MainContent/>}></Route>
+          <Route path="/" element={<MainContent onLogin = {onLogin}/>}></Route>
           <Route path="/SignUp" element={<SignUp onLogin = {onLogin} />}></Route>           
           <Route path="/LoginPage" element={<LoginPage onLogin = {onLogin} />}></Route>
           <Route path="/Profile" element={<Profile loggedInUser = {loggedInUser} />}></Route>
+          <Route path="/ProfileManage" element={<ProfileManage loggedInUser = {loggedInUser} />}></Route>
 
         </Routes>
 

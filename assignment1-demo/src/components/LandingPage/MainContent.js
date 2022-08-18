@@ -4,41 +4,12 @@ import Header from "../../global_files/Header";
 import Footer from "../../global_files/Footer";
 import './MainContent.css'
 
-const Main = (user) => {
-
-
-    // Main page should change in reaction to user logging in
-
-    const [login, setLogin] = useState(localStorage.getItem("Login_Status"))
-
-
-    function toggleSignUpLink() {
-      // Makes sure that once the user logs in, they can't Sign Up
-      if (login === "true") {
-        return 
-      }
-      else {
-        return <Link to="/Signup"><button id = "sign-up"><p>Sign Up</p></button></Link>
-      }
-    }
-
-    function toggleName() {
-
-      if (login === "true") {
-        return <h1>Welcome, {user.userInfo.firstname}</h1>
-      }
-      else {
-        return
-      }
-    }
-
+const Main = ({OnLogin}) => {
     return (
 
         <div className="main-content">
 
             <div className = "webinfo-container">
-
-            {toggleName()}
 
       <div className="website-information"> 
           <div className = "text-small">Hi Team, welcome to LAN (Loop Agile Now). 
@@ -102,7 +73,10 @@ const Main = (user) => {
             </div>
 
             <div className = "sign-up-button">
-                {toggleSignUpLink()}
+
+                onLogin?:
+
+
             </div>
 
             </div>

@@ -32,31 +32,31 @@ const Profile = ({loggedInUser}) =>{
     return(
         <div className='outer-profile'>
             <div className='profile'>
-                <h1>Profile Management</h1>
+                <h1 className='profile-title'>Profile Management</h1>
                 <div className='profile-view'>
-                    <img className='image' src = {`data:image/jpg;base64,${imageLink}`} alt=""></img>
+                    <img className='image-profile' src = {`data:image/jpg;base64,${imageLink}`} alt=""></img>
                     <div className='profile-options'>
                         <div className='user-details'>
-                            <p>{userParsed.firstname}</p>
-                            <p>{userParsed.lastname}</p>
-                            <small>{userParsed.email}</small>
+                            <p>First Name: {userParsed.firstname}</p>
+                            <p>Last Name: {userParsed.lastname}</p>
+                            <small>Email: {userParsed.email}</small>
                         </div>
 
                         <div className='profile-icons'>
-                            <button onClick={edit_account}><img className='icon' src={pencilIcon} alt=""></img></button>
+                            <button className='profile-button' onClick={edit_account}><img className='icon' src={pencilIcon} alt=""></img></button>
                             <p>Edit profile</p>
                         </div>
                         
                         <div className='profile-icons'>
-                            <button onClick={delete_account}><img className='icon' src={trash} alt=""></img></button>
+                            <button className='profile-button' onClick={delete_account}><img className='icon' src={trash} alt=""></img></button>
                             <p>Delete profile</p>
                         </div>
-                        {}
-                        
+
                     </div>
                 </div>
-                <div>
+                <div className='about-me'>
                     <h3>About me</h3>
+                    <h3>{userParsed['date_joined']}</h3>
                     <br></br>
                     <p>My password {userParsed.password}</p>
                 </div>
