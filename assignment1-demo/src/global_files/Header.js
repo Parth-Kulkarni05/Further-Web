@@ -21,6 +21,8 @@ const Header = ({loggedInUser, onLogout}) => {
                 <div>
               <Link to = "/" className="links"><li onClick={() => onLogout()}>Sign out</li></Link>
               <Link to = "/Profile" className="links"><li>Profile Managment</li></Link>
+              <Link to = "/create" className="links"><li>Create post</li></Link>
+              <Link to = "/ProfilePosts" className="links"><li>View Posts</li></Link>
                </div>
 
               <div>

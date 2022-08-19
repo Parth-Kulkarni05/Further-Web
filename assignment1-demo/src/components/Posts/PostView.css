@@ -1,0 +1,7 @@
+.post-view {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    padding: 70px;
+    gap: 40px;
+}

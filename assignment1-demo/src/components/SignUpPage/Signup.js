@@ -170,7 +170,8 @@ const SignUp = ({onLogin}) => {
                 email:email,
                 password:password,
                 profile_pic: profile_pic_default_base64_encoding(),
-                date_joined: finalDate
+                date_joined: finalDate,
+                posts: [],
             }))
 
             onLogin(email)
@@ -197,7 +198,7 @@ const SignUp = ({onLogin}) => {
 
                 <form className = "signup-box">
                     <label htmlFor="email">Email Address: </label>
-                    <input type='text' id="email-text" onChange={emailinput} required placeholder='John82@test.com.au'></input>
+                    <input type='textarea' id="email-text" onChange={emailinput} required placeholder='John82@test.com.au'></input>
                     {emailError()}
                     
 
