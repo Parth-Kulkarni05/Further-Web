@@ -43,7 +43,7 @@ function App() {
           <Route path="/" element={<MainContent onLogin = {onLogin}/>}></Route>
           <Route path="/SignUp" element={<SignUp onLogin = {onLogin} />}></Route>           
           <Route path="/LoginPage" element={<LoginPage onLogin = {onLogin} />}></Route>
-          <Route path="/Profile" element={<Profile loggedInUser = {loggedInUser} />}></Route>
+          <Route path="/Profile" element={<Profile loggedInUser = {loggedInUser} onLogout = {onLogout} />}></Route>
           <Route path="/ProfileManage" element={<ProfileManage loggedInUser = {loggedInUser} />}></Route>
           <Route path="/ProfilePosts" element={<ProfilePosts loggedInUser = {loggedInUser}/>}></Route>
           
