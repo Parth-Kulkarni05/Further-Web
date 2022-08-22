@@ -63,6 +63,8 @@ const ProfileManage = ({loggedInUser}) =>{
 
     }
 
+
+
     function redirect(){
 
         if (valid){
@@ -70,7 +72,23 @@ const ProfileManage = ({loggedInUser}) =>{
             userParsed.lastname = updatedlastname;
             userParsed.email = updatedemail;
 
+            localStorage.setItem("loggedInUser", updatedemail)
+
+
+            // Reset all the posts and replies' email of the user to the updated email
+            // by iterating through all of them and changing their user (email) attribute
+
+            for (let i = 0; i < userParsed.posts.length; ++i) {
+                userParsed.posts[i].user = updatedemail
+                for (let j = 0; j < userParsed.posts[i].replies.length; ++j) {
+                    userParsed.posts[i].replies[j].user = updatedemail
+                    for (let k = 0; k < userParsed.posts[i].replies[j].replies.length; ++k) {
+                        userParsed.posts[i].replies[j].replies[k].user = updatedemail
+                    }
+                }
+            }
             localStorage.setItem(updatedemail, JSON.stringify(userParsed))
+
 
             navigate('/Profile')
 

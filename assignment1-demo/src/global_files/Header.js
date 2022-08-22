@@ -22,7 +22,9 @@ const Header = ({loggedInUser, onLogout}) => {
               <Link to = "/" className="links"><li onClick={() => onLogout()}>Sign out</li></Link>
               <Link to = "/Profile" className="links"><li>Profile Managment</li></Link>
               <Link to = "/create" className="links"><li>Create post</li></Link>
-              <Link to = "/ProfilePosts" className="links"><li>View Posts</li></Link>
+              <Link to = "/ProfilePosts" className="links"><li>My Posts</li></Link>
+              <Link to = "/PublicPosts" className="links">Forum</Link>
+
                </div>
 
               <div>
@@ -36,6 +38,7 @@ const Header = ({loggedInUser, onLogout}) => {
                   <div>
                 <Link to = "/Signup" className="links"><li>Sign Up</li></Link>
                 <Link to = "/LoginPage" className="links"><li>Log In</li></Link>
+                <Link to = "/PublicPosts" className="links">Forum</Link>
                  </div>
             </ul>
         }

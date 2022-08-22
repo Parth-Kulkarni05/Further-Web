@@ -187,7 +187,7 @@ const PostView = (user) => {
 
                         post.replies.map((reply) => (
                             <div key = {reply.id}>
-                                <small>{reply.user}</small>
+                                <small>{reply.user} {userParsed.firstname}</small>
 
                                 <Comment userObj={userParsed} postIndex={postIndex} loggedIn={user.loggedInUser} content={reply}/>
                             </div>

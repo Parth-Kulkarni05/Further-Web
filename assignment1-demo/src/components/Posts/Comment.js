@@ -5,7 +5,7 @@ function Comment(props) {
 
     const [replying, setReplying] = useState(false)
     const [replyText, setReplyText] = useState('')
-    
+
 
     function replytextinput(event) {
         setReplyText(event.target.value)
@@ -69,7 +69,7 @@ function Comment(props) {
                         {props.content.replies.map((reply) => (
                             
                             <div className="comment" key={reply.id}>
-                                <small>{reply.user}</small>
+                                <small>{reply.user} {props.userObj.firstname}</small>
                                 <p>{reply.reply}</p>
                             </div>
                         ))}

@@ -47,7 +47,7 @@ function App() {
           <Route path="/Profile" element={<Profile loggedInUser = {loggedInUser} onLogout = {onLogout} />}></Route>
           <Route path="/ProfileManage" element={<ProfileManage loggedInUser = {loggedInUser} />}></Route>
           <Route path="/ProfilePosts" element={<ProfilePosts loggedInUser = {loggedInUser}/>}></Route>
-          <Route path="/PublicPosts" element={<PublicPosts/>}></Route>
+          <Route path="/PublicPosts" element={<PublicPosts loggedInUser = {loggedInUser}/>}></Route>
           <Route path="/PostView" >
               <Route path=":id" element={<PostView loggedInUser = {loggedInUser}/>}></Route>
           </Route>

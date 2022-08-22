@@ -12,7 +12,7 @@ const Profile = ({loggedInUser, onLogout}) =>{
     const userParsed = JSON.parse(userInfo)
     const imageLink = userParsed['profile_pic']
 
-    console.log(userParsed['profile_pic'])
+    // console.log(userParsed['profile_pic'])
 
     let navigate = useNavigate()
 
