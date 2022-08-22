@@ -81,7 +81,8 @@ const SignUp = ({onLogin}) => {
             return (
                 <div className='AlertMessage'>Error: Make sure email formatting is correct </div>
             )
-        }     
+        }
+
     }
 
     function nameError(nameType){
@@ -101,6 +102,30 @@ const SignUp = ({onLogin}) => {
 
             }
     }
+
+    function emailCheck(){
+
+        let email_detected = false
+        
+        for(let i = 0; i < localStorage.length; i++){
+            let key_local_storage = localStorage.key(i);
+
+            if (key_local_storage === email){
+                email_detected = true;
+            }
+
+        }
+
+        if (email_detected === true){
+            return(
+                <div className='AlertMessage'>This email already exists within system!</div>
+            )
+
+        }
+
+        return email_detected;
+
+    }
     
 
     function sucessful(){
@@ -119,9 +144,8 @@ const SignUp = ({onLogin}) => {
 
         /* eslint-disable no-useless-escape */
 
-
-        if(email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) && firstname.match(/^[a-zA-Z]+$/) && lastname.match(/^[a-zA-Z]+$/) 
-                        && password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/))
+        if(!emailCheck() && email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) && firstname.match(/^[a-zA-Z]+$/) 
+            && lastname.match(/^[a-zA-Z]+$/) && password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/))
         {
             setValid(true)
             
@@ -209,6 +233,7 @@ const SignUp = ({onLogin}) => {
                     <label htmlFor="email">Email Address: </label>
                     <input type='textarea' id="email-text" onChange={emailinput} required placeholder='John82@test.com.au'></input>
                     {emailError()}
+                    {emailCheck()}
                     
 
 
@@ -233,13 +258,12 @@ const SignUp = ({onLogin}) => {
                     <input type='password' id="password-text" onChange={passwordinput} required placeholder='Enter a strong password'></input>
                     {passwordError()}
 
-                    <button type="submit" onClick ={(e) => submit(e)} className="submit-button">Sign up</button>
-
                 </form>
+
+                <button type="submit" onClick ={(e) => submit(e)} className="submit-button">Sign up</button>
+
                 
-              
-
-
+            
 
                 {sucessful()} 
 
@@ -250,9 +274,6 @@ const SignUp = ({onLogin}) => {
             
         </div>
 
-
-
-      
 
     )
 }

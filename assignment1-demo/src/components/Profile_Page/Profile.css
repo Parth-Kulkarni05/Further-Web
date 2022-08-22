@@ -1,5 +1,5 @@
 
-.outer-profile {
+.profile-container {
     margin: 50px;
     display: flex;
     justify-content: center;
@@ -8,59 +8,66 @@
 
 }
 
-
-.profile-title {
-    font-weight: 500;
-}
-
-.profile {
+.profile-info{
     display: flex;
     flex-direction: column;
     gap: 50px;
-    padding: 50px 80px 200px 80px;
+    height: 900px;
+    width: 1500px;
+    padding: 50px;
     border-radius: 10px;
     box-shadow: 5px 5px 10px 10px #ccc;
     align-items: center;
 }
 
-.profile-view {
+.profile-title{
+    font-size: 25px;
+}
+
+.user-container{
     display: flex;
-    gap: 40px;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+    font-size: 20px;
+    padding: 60px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 10px #ccc;   
+}
+   
+
+
+.user-info{
+    display: flex;
+    gap: 30px;
+}
+
+
+
+.user-profile-img{
+    height: 200px;
+    border-radius: 50%;
+}
+
+
+.edit-delete-buttons{
+    display: flex;
+    gap: 100px;
+    padding: 20px;
+}
+
+.edit-delete-buttons button{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
-}
-
-.user-details {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    font-weight: 100;
-    font-size: large;
-    margin-bottom: 10px;
-}
-
-
-.profile-options {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.profile-icons {
-    display: flex;
-}
-
-
-
-
-
-.profile-button {
-    width: 90px;
-    height: auto;
-    align-self: center;
+    font-size: 15px;
+    height: 60px;
+    padding: 10px;
+    background-color: #5e6c93;
+    color: white;
     border-radius: 5px;
+
+    
 }
-
-
 
 
 

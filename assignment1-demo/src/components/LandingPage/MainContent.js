@@ -5,6 +5,10 @@ import Footer from "../../global_files/Footer";
 import './MainContent.css'
 
 const Main = ({OnLogin}) => {
+
+    
+
+
     return (
 
         <div className="main-content">
