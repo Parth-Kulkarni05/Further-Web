@@ -70,7 +70,7 @@ const ProfileManage = ({loggedInUser}) =>{
             userParsed.lastname = updatedlastname;
             userParsed.email = updatedemail;
 
-            localStorage.setItem(loggedInUser, JSON.stringify(userParsed))
+            localStorage.setItem(updatedemail, JSON.stringify(userParsed))
 
             navigate('/Profile')
 
