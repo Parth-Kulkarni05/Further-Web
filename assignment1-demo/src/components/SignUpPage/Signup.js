@@ -198,8 +198,17 @@ const SignUp = ({onLogin}) => {
                 posts: [],
             }))
 
-            onLogin(email)
 
+            // Sets public attribute for all posts created
+            if (localStorage.getItem("PublicPosts") === null) {
+                localStorage.setItem("PublicPosts", JSON.stringify({
+                    posts: []
+                }))
+            }
+
+
+
+            onLogin(email)
             navigate('/Profile')
         }
         else {

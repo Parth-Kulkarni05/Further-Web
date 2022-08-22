@@ -1,0 +1,14 @@
+
+.nested-comments {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-left: 5em;
+
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+}
