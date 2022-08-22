@@ -1,6 +1,7 @@
 import { BrowserRouter, NavLink, Routes, Route, useNavigate, Link, useParams } from 'react-router-dom';
 import React, { useState, useEffect, Redirect, Navigate} from "react";
 import "./PostView.css"
+import Comment from './Comment';
 
 const PostView = (user) => {
 
@@ -10,6 +11,7 @@ const PostView = (user) => {
     const [found, setFound] = useState(false)
     const [userParsed, setUser] = useState(JSON.parse(localStorage.getItem(user.loggedInUser)))
     const [edit, setEdit] = useState(false)
+    const [replyComment, setReplyCOmment] = useState('')
     const [body, setBody] = useState('')
     const [reply, setReply] = useState('')
     const [refresh, setRefresh] = useState(false)
@@ -92,12 +94,31 @@ const PostView = (user) => {
             user: user.loggedInUser,
             id: Date.now(),
             date: new Date(),
+            replies: [],
         }
         userParsed.posts[postIndex].replies.unshift(replyObj)
         localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))
 
         setRefresh(true)
 
+    }
+
+
+    function deletereply(event) {
+
+        // Responsible for inputting a reply to a comment/reply.
+        // Searches for reply based on reply id from button input event
+
+        const reply_id = event.target.value
+
+        for (let i = 0; i < post.replies.length; ++i) {
+            if (post.replies[i].id === parseInt(reply_id)) {
+                setReply(post.replies[i])       // sets the reply of the comment / has two functions
+                console.log("success")
+            }
+        }
+
+        // create reply obj and store in replies list of reply obj
     }
 
 
@@ -120,11 +141,17 @@ const PostView = (user) => {
     return (
         <div className='post-view'>
 
+            {/* There should be a conditional statement to check if the logged
+                in user has created the post, and thus change the view of the 
+                post accordingly */}
+
+            <h1>{post.title}</h1>
+            <br></br>
+
+            
             {edit === false ? (
             
-            <div>
-                <h1>{post.title}</h1>
-                <br></br>
+            <div className='post-upper'>
                 <p>{post.body}</p>
                 <div className='post-buttons'>
                     <button value={post.id} onClick={deletePost}>Delete post</button>
@@ -133,42 +160,44 @@ const PostView = (user) => {
             </div>
 
             ) : 
-            <div>
-                <h1>{post.title}</h1>
-                <br></br>
-                <input type='text' value={body === "" ? (userParsed.posts[postIndex].body) : body} onChange={bodyinput}></input>
+
+            <div className='post-upper'>
+
+                <textarea cols="79" rows="20" value={body === "" ? (userParsed.posts[postIndex].body) : body} onChange={bodyinput}></textarea>
+                
                 <div className='post-buttons'>
                     <button value={post.id} onClick={deletePost}>Delete post</button>
-                    <button value={post.id} onClick={editPost}>Edit post</button>
                     <button onClick={submit}>Submit</button>
                 </div>
             </div>
+
             }
 
+
             <div className='comments'>
-                <input type='text' onChange={replyinput}></input>
-                <button onClick={submitreply} className='add-comment'>Add a comment</button>
 
-                <div className='comments-section'>
-
+                <div className='comments-add'>
+                    <textarea onChange={replyinput} placeholder="Add a comment to this post"></textarea>
+                    <button onClick={submitreply} className='add-comment'>Add a comment</button>
                 </div>
 
+                <div className='comment-section'>
 
-                {post.replies ? (
+                    {post.replies ? (
 
-                    post.replies.map((reply) => (
+                        post.replies.map((reply) => (
+                            <div key = {reply.id}>
+                                <small>{reply.user}</small>
 
-                        <div key={reply.id} className='replies'>
-                            <small>{reply.user}   ----------- {reply.date}</small>
-                            <h3>{reply.reply}</h3>
-                        </div>
+                                <Comment userObj={userParsed} postIndex={postIndex} loggedIn={user.loggedInUser} content={reply}/>
+                            </div>
+                        ))
 
-                    ))
+                    ) :
 
-                ) :
-
-                    <div><h1>No comments on this post yet :)</h1></div>
-                }
+                        <div><h1>No comments on this post yet :)</h1></div>
+                    }
+                </div>
 
             </div>
 

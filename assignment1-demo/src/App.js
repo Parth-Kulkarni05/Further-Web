@@ -12,6 +12,7 @@ import ProfileManage from "./components/Profile_Managemntt/profile_managment";
 import ProfilePosts from "./components/Posts/ProfilePosts";
 import CreatePost from "./components/Posts/CreatePost";
 import PostView from "./components/Posts/PostView";
+import PublicPosts from "./components/Posts/PublicPosts";
 
 
 function App() {
@@ -46,13 +47,14 @@ function App() {
           <Route path="/Profile" element={<Profile loggedInUser = {loggedInUser} />}></Route>
           <Route path="/ProfileManage" element={<ProfileManage loggedInUser = {loggedInUser} />}></Route>
           <Route path="/ProfilePosts" element={<ProfilePosts loggedInUser = {loggedInUser}/>}></Route>
-          
+          <Route path="/PublicPosts" element={<PublicPosts/>}></Route>
           <Route path="/PostView" >
               <Route path=":id" element={<PostView loggedInUser = {loggedInUser}/>}></Route>
           </Route>
           
           <Route path="/create" element={<CreatePost loggedInUser = {loggedInUser}/>}></Route>
         </Routes>
+        
 
         <Footer></Footer>
       

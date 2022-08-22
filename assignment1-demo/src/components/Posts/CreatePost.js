@@ -26,17 +26,28 @@ function CreatePost(user) {
 
         const post = {
             title: title,
+            user: user.loggedInUser,
             body: body,
             id: Date.now(),
             replies: [],
         }
+        
+
+        console.log(user.loggedInUser)
 
         const userInfo = localStorage.getItem(user.loggedInUser)
         const userParsed = JSON.parse(userInfo)
         userParsed.posts.push(post)
-        
+
         localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))     // Updates the user JSON object
         console.log(userParsed.posts)
+
+        
+        let publicPosts = JSON.parse(localStorage.getItem("PublicPosts"))
+        publicPosts.posts.push(post)
+        localStorage.setItem("PublicPosts", JSON.stringify(publicPosts))        // Updates the PublicPosts
+
+
         navigate("/ProfilePosts")
         alert("New post created!")
 
@@ -50,10 +61,9 @@ function CreatePost(user) {
                 <h1>Create a post</h1>
             </div>
 
-
             <div className='post-form'>
-                <form>
-                    <label htmlFor='title'>Title</label>
+                <form className='post-input'>
+                    <label htmlFor='title'></label>
                     <input type='text' placeholder='Enter title' onChange={titleinput}></input>
                 </form>
 
@@ -67,10 +77,6 @@ function CreatePost(user) {
             <div className='post-buttons'>
                 <button onClick={submitpost}>Submit</button>
                 <button>Upload image</button>
-            </div>
-
-            <div className='replies'>
-                <h2>Comments</h2>
             </div>
 
         </div>

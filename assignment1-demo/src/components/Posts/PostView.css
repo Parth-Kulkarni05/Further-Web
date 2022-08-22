@@ -1,7 +1,103 @@
 .post-view {
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-self: center;
     padding: 70px;
     gap: 40px;
+    margin: 0px 220px;
+}
+
+.post-upper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0px 300px;
+}
+
+
+.post-upper p {
+    align-self: center;
+    width: auto;
+    padding: 24px 30px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 10px;
+}
+
+.post-upper textarea {
+
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.post-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+button {
+    border-radius: 10px;
+    border-style: none;
+    padding: 10px;
+    box-shadow: rgba(3, 3, 3, 0.2) 0px 7px 29px 0px;
+}
+
+button:hover {
+    opacity: 0.5;
+}
+
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.comments-add {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: auto;
+}
+
+.comments-add button {
+    border-radius: 10px;
+    border-style: none;
+    padding: 10px;
+    box-shadow: rgba(3, 3, 3, 0.2) 0px 7px 29px 0px;
+    font-size: small;
+}
+
+.comments-add button {
+    border-radius: 10px;
+    border-style: none;
+    padding: 5px;
+    width: 200px;
+    align-self: center;
+    font-weight: bold;
+}
+
+.comments-add textarea {
+    width: auto;
+    height: auto;
+    padding: 12px 20px;
+    align-self: center;
+    box-shadow: rgba(3, 3, 3, 0.2) 0px 7px 29px 0px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+}
+
+.comment-section {
+    margin-left: auto; 
+    margin-right: 0;
+}
+
+
+.comment-section {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
 }

@@ -14,13 +14,19 @@
     display: flex;
     gap: 40px;
     align-self: center;
+    margin-bottom: 100px;
 }
 
 .create-post {
     display: flex;
     justify-content: center;
     margin-top: 50px;
-    margin-bottom: 50px;
+}
+
+.post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 .post-input {
@@ -36,7 +42,18 @@
     padding: 12px;
     border-radius: 10px;
     border: none;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    outline: none;
 }
+
+.post-input input[type=text] {
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    outline: none;
+}
+
 
 .replies {
     margin-top: 80px;
