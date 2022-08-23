@@ -4,7 +4,7 @@ import Header from "../../global_files/Header";
 import Footer from "../../global_files/Footer";
 import './MainContent.css'
 
-const Main = ({OnLogin}) => {
+const Main = ({OnLogin, loggedInUser}) => {
 
     
 
@@ -15,52 +15,52 @@ const Main = ({OnLogin}) => {
 
             <div className = "webinfo-container">
 
-      <div className="website-information"> 
-          <div className = "text-small">Hi Team, welcome to LAN (Loop Agile Now). 
-          We have made this social platform to improve and centralise our communications. 
-          We decided to make our own platform to ease flow of communications, keep things documentated 
-          and to prevent ethical issues that may have arised by using an external platform.</div>
-      </div>
+                <div className="website-information"> 
+                    <div className = "text-small">Hi Team, welcome to LAN (Loop Agile Now). 
+                    We have made this social platform to improve and centralise our communications. 
+                    We decided to make our own platform to ease flow of communications, keep things documentated 
+                    and to prevent ethical issues that may have arised by using an external platform.</div>
+                </div>
 
 
-      <div className="placeholder">
-        <img src = "/images/Landing_Page/placeholder.jpg" alt=""></img>
-      </div>
-    
-    </div>
+                <div className="placeholder">
+                    <img src = "/images/Landing_Page/placeholder.jpg" alt=""></img>
+                </div>
+                
+            </div>
         
-    <div className = "text-info">What makes LAN better, for us and you?</div>
+                <div className = "text-info">What makes LAN better, for us and you?</div>
 
-            <div className = "boxes-container">
+                        <div className = "boxes-container">
 
-            <div className = "boxes-info">
+                        <div className = "boxes-info">
 
-                <img src= "/images/Landing_Page/better_com.jpg" className="logo" alt =""></img>
-                <div className = "text">Improved Communication</div>
+                            <img src= "/images/Landing_Page/better_com.jpg" className="logo" alt =""></img>
+                            <div className = "text">Improved Communication</div>
 
-            </div>
+                        </div>
 
-            <div className = "boxes-info">
+                        <div className = "boxes-info">
 
-                <img src = "/images/Landing_Page/better_doc.jpg" className="logo" alt = ""></img>
-                <div className = "text">Improved Documentation</div>
+                            <img src = "/images/Landing_Page/better_doc.jpg" className="logo" alt = ""></img>
+                            <div className = "text">Improved Documentation</div>
 
-            </div>
+                        </div>
 
-            <div className = "boxes-info">
+                        <div className = "boxes-info">
 
-                <img src = "/images/Landing_Page/privacy.jpg" alt = ""></img>
-                <div className = "text">Improved User/Org Privacy</div>
+                            <img src = "/images/Landing_Page/privacy.jpg" alt = ""></img>
+                            <div className = "text">Improved User/Org Privacy</div>
 
-            </div>
+                        </div>
 
-            <div className = "boxes-info">
+                        <div className = "boxes-info">
 
-                <img src = "/images/Landing_Page/better_collab.jpg" alt = ""></img>
-                <div className = "text">Improved Collaboration</div>
+                            <img src = "/images/Landing_Page/better_collab.jpg" alt = ""></img>
+                            <div className = "text">Improved Collaboration</div>
 
-            </div>
-            </div>
+                        </div>
+                </div>
 
             <div className = 'qoute-info'>
 
@@ -78,8 +78,15 @@ const Main = ({OnLogin}) => {
 
             <div className = "sign-up-button">
 
-                onLogin?:
+                {loggedInUser ? (
+                   <button id = "sign-up">You are already Logged In !</button>
 
+                ) :
+
+                   <Link to={'/SignUp'}><button id = "sign-up">Sign Up</button></Link>
+
+
+                }
 
             </div>
 

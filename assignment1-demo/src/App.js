@@ -2,7 +2,7 @@ import Header from "./global_files/Header";
 import MainContent from "./components/LandingPage/MainContent"
 import Footer from "./global_files/Footer";
 import { BrowserRouter, NavLink, Routes, Route } from 'react-router-dom';
-import SignUp from "./components/SignUpPage/SignUp"
+import SignUp from "./components/SignUpPage/signup.js"
 import LoginPage from "./components/LoginPage/Login"
 import Profile from "./components/Profile_Page/Profile";
 import { ToastContainer } from 'react-toastify';
@@ -41,11 +41,11 @@ function App() {
         <Header loggedInUser = {loggedInUser} onLogout = {onLogout} />
 
         <Routes>
-          <Route path="/" element={<MainContent onLogin = {onLogin}/>}></Route>
+          <Route path="/" element={<MainContent onLogin = {onLogin} loggedInUser = {loggedInUser}/>}></Route>
           <Route path="/SignUp" element={<SignUp onLogin = {onLogin} />}></Route>           
           <Route path="/LoginPage" element={<LoginPage onLogin = {onLogin} />}></Route>
           <Route path="/Profile" element={<Profile loggedInUser = {loggedInUser} onLogout = {onLogout} />}></Route>
-          <Route path="/ProfileManage" element={<ProfileManage loggedInUser = {loggedInUser} />}></Route>
+          <Route path="/ProfileManage" element={<ProfileManage loggedInUser = {loggedInUser} onLogin = {onLogin} />}></Route>
           <Route path="/ProfilePosts" element={<ProfilePosts loggedInUser = {loggedInUser}/>}></Route>
           <Route path="/PostView" >
               <Route path=":id" element={<PostView loggedInUser = {loggedInUser}/>}></Route>

@@ -4,7 +4,7 @@ import './profile_manage.css';
 
 
 
-const ProfileManage = ({loggedInUser}) =>{
+const ProfileManage = ({loggedInUser, onLogin}) =>{
     
     const userInfo = localStorage.getItem(loggedInUser)
     const userParsed = JSON.parse(userInfo)
@@ -68,12 +68,13 @@ const ProfileManage = ({loggedInUser}) =>{
     function redirect(){
 
         if (valid){
+
             userParsed.firstname = updatedfirstname;
             userParsed.lastname = updatedlastname;
             userParsed.email = updatedemail;
 
-            localStorage.setItem("loggedInUser", updatedemail)
 
+            localStorage.removeItem(loggedInUser)
 
             // Reset all the posts and replies' email of the user to the updated email
             // by iterating through all of them and changing their user (email) attribute
@@ -88,7 +89,7 @@ const ProfileManage = ({loggedInUser}) =>{
                 }
             }
             localStorage.setItem(updatedemail, JSON.stringify(userParsed))
-
+            onLogin(updatedemail)
 
             navigate('/Profile')
 
