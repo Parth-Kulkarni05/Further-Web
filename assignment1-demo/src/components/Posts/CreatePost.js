@@ -21,24 +21,35 @@ function CreatePost(user) {
         // Creates a post object and then adds it to posts attribute
         // in local storage.
 
-        const post = {
-            title: title,
-            user: user.loggedInUser,
-            body: body,
-            id: Date.now(),
-            replies: [],
+        if (((body === "") || (title === ""))) {
+            alert("Post or Title cannot be empty")
         }
+        else if ((body.length > 250)) {
+            alert("Post cannot have more than 250 characters")
+        }
+        else {
+
         
+            const post = {
+                title: title,
+                user: user.loggedInUser,
+                body: body,
+                id: Date.now(),
+                replies: [],
+            }
+            
 
-        const userParsed = JSON.parse(localStorage.getItem(user.loggedInUser))    // Extracts users object of information for updating into object
-        
-        userParsed.posts.push(post)
+            const userParsed = JSON.parse(localStorage.getItem(user.loggedInUser))    // Extracts users object of information for updating into object
+            
+            userParsed.posts.push(post)
 
-        localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))     // Updates the user JSON object
+            localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))     // Updates the user JSON object
 
 
-        navigate("/ProfilePosts")
-        alert("New post created!")
+            navigate("/ProfilePosts")
+            alert("New post created!")
+
+        }
 
     }
 
