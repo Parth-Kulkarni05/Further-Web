@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Redirect, Navigate} from "react";
+import React, { useState} from "react";
 import "./Comment.css"
 
 function Comment(props) {
@@ -56,13 +56,18 @@ function Comment(props) {
 
         {replying ? (
 
+                // Show input for reply to the reply
+
             <div>
                 <input placeholder="Enter reply" onChange={replytextinput}></input>
                 <button onClick={submitReply}>Submit</button>
             </div>
 
         ) :
-            <div>{/* Required div tag for ternary */}
+
+                // Else, show view of all replies for given reply (from props.content)
+
+            <div>
                 
                 {props.content.replies.length > 0 ? (
                     <div className="nested-comments">

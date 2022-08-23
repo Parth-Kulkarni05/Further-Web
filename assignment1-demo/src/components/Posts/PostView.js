@@ -1,7 +1,7 @@
-import { BrowserRouter, NavLink, Routes, Route, useNavigate, Link, useParams } from 'react-router-dom';
-import React, { useState, useEffect, Redirect, Navigate} from "react";
-import "./PostView.css"
+import {  useNavigate, useParams } from 'react-router-dom';
+import React, { useState } from "react";
 import Comment from './Comment';
+import "./PostView.css"
 
 const PostView = (user) => {
 
@@ -9,9 +9,8 @@ const PostView = (user) => {
     const [post, setPost] = useState("")
     const [postIndex, setPostIndex] = useState("")
     const [found, setFound] = useState(false)
-    const [userParsed, setUser] = useState(JSON.parse(localStorage.getItem(user.loggedInUser)))
+    const [userParsed] = useState(JSON.parse(localStorage.getItem(user.loggedInUser)))     // Re-usable
     const [edit, setEdit] = useState(false)
-    const [replyComment, setReplyComment] = useState('')
     const [body, setBody] = useState('')
     const [reply, setReply] = useState('')
     const [refresh, setRefresh] = useState(false)
@@ -21,15 +20,11 @@ const PostView = (user) => {
 
     function getPostFromParams() {
 
-        // Searches for the post from the given id of the url
-        // using the useParams hook.
-
-        // Should also edit the post in this page
-
+            // Searches for the post from the given id of the url
+            // using the useParams hook.
 
         const userInfo = localStorage.getItem(user.loggedInUser)
         const userParsed = JSON.parse(userInfo)
-        // let post = '';
 
         for (let i=0; i < userParsed.posts.length; ++i) {
             if (userParsed.posts[i].id === parseInt(idObj.id)) {
@@ -41,32 +36,20 @@ const PostView = (user) => {
 
     }
 
-    
-    function editPost(event) {
-
-        // Edits the post using the post's id
-
-        console.log(event.target.value)
-        setEdit(true)
-        
-    }
 
     function bodyinput(event) {
-        console.log(event.target.value)
         setBody(event.target.value)
     }
 
     function replyinput(event) {
-        console.log(event.target.value)
         setReply(event.target.value)
     }
 
 
-
     function deletePost(event) {
-
-        // Deletes the post using the post's id
-
+            // Deletes the post (using the postsIndex to find
+            // which post to delete)
+            
         userParsed.posts.splice(postIndex, 1)
         localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))
         navigate(-1)
@@ -74,35 +57,15 @@ const PostView = (user) => {
 
     }
 
-
     function submit() {
-
-        // Resubmits the data from the form into html localstorage
-        // via stringified json obj.
+            // Submits the data from the form into html localstorage
+            // via setting a stringified json obj.
 
         userParsed.posts[postIndex].body = body;
         setPost(userParsed.posts[postIndex])
         localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))
         setEdit(false)
 
-    }
-
-    function updatePublicPosts(replyObj) {
-
-
-        // Should find the post to add the reply to in the PubllicPosts from localstorage
-        let publicPosts = JSON.parse(localStorage.getItem("PublicPosts"))
-        
-        for (let i = 0; i < publicPosts.posts.length; ++i) {
-            
-            if (publicPosts.posts[i].id === parseInt(idObj.id)) {
-
-                publicPosts.posts[i].replies.push(replyObj)
-                localStorage.setItem("PublicPosts", JSON.stringify(publicPosts))        // Updates the PublicPosts
-
-            }
-        }
-        
     }
 
     function submitreply() {
@@ -115,7 +78,6 @@ const PostView = (user) => {
             replies: [],
         }
         
-        updatePublicPosts(replyObj)
 
         userParsed.posts[postIndex].replies.unshift(replyObj)
         localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))
@@ -126,30 +88,14 @@ const PostView = (user) => {
     }
 
 
-    function deletereply(event) {
-
-        // Responsible for inputting a reply to a comment/reply.
-        // Searches for reply based on reply id from button input event
-
-        const reply_id = event.target.value
-
-        for (let i = 0; i < post.replies.length; ++i) {
-            if (post.replies[i].id === parseInt(reply_id)) {
-                setReply(post.replies[i])       // sets the reply of the comment / has two functions
-                console.log("success")
-            }
-        }
-
-        // create reply obj and store in replies list of reply obj
-    }
-
 
     if ((found === false)) {
+            // Conditional to make sure a post is found to render
         getPostFromParams()
     }
 
-
     function refreshPage() {
+            // To allow for the comments to render from localStorage to the page
 
         if (refresh) {
             window.location.reload()
@@ -159,36 +105,36 @@ const PostView = (user) => {
     }
 
 
-
     return (
         <div className='post-view'>
-
-            {/* There should be a conditional statement to check if the logged
-                in user has created the post, and thus change the view of the 
-                post accordingly */}
 
             <h1>{post.title}</h1>
             <br></br>
 
             
             {edit === false ? (
+
+                // Show only delete and edit options
+
             
             <div className='post-upper'>
                 <p>{post.body}</p>
                 <div className='post-buttons'>
                     <button value={post.id} onClick={deletePost}>Delete post</button>
-                    <button value={post.id} onClick={editPost}>Edit post</button>
+                    <button value={post.id} onClick={() => setEdit(true)}>Edit post</button>
                 </div>
             </div>
 
             ) : 
+
+                // Else, show body in textarea for editing and submit button
+
 
             <div className='post-upper'>
 
                 <textarea cols="79" rows="20" value={body === "" ? (userParsed.posts[postIndex].body) : body} onChange={bodyinput}></textarea>
                 
                 <div className='post-buttons'>
-                    <button value={post.id} onClick={deletePost}>Delete post</button>
                     <button onClick={submit}>Submit</button>
                 </div>
             </div>

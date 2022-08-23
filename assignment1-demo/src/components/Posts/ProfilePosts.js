@@ -1,12 +1,12 @@
-import { BrowserRouter, NavLink, Routes, Route, useNavigate, Link, useParams } from 'react-router-dom';
-import React, { useState, useEffect, Redirect, Navigate} from "react";
+import { Link } from 'react-router-dom';
+import React, { useState } from "react";
 import "./ProfilePosts.css"
 
 function ProfilePosts(user) {
 
     // Should show the posts from a specific user
 
-    const [userParsed, setUser] = useState(JSON.parse(localStorage.getItem(user.loggedInUser)))
+    const [userParsed] = useState(JSON.parse(localStorage.getItem(user.loggedInUser)))
 
 
     return (

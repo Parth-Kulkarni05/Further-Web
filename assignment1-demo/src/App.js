@@ -1,8 +1,8 @@
 import Header from "./global_files/Header";
 import MainContent from "./components/LandingPage/MainContent"
 import Footer from "./global_files/Footer";
-import { BrowserRouter, NavLink, Routes, Route } from 'react-router-dom';
-import SignUp from "./components/SignUpPage/signup.js"
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import SignUp from "./components/SignUpPage/signUp.js"
 import LoginPage from "./components/LoginPage/Login"
 import Profile from "./components/Profile_Page/Profile";
 import { ToastContainer } from 'react-toastify';
@@ -12,15 +12,11 @@ import ProfileManage from "./components/Profile_Managemntt/profile_managment";
 import ProfilePosts from "./components/Posts/ProfilePosts";
 import CreatePost from "./components/Posts/CreatePost";
 import PostView from "./components/Posts/PostView";
-import PublicPosts from "./components/Posts/PublicPosts";
-import PublicPostView from "./components/Posts/PublicPostView";
 
 function App() {
+
   const [loggedInUser, setLoggedInUser] = useState(localStorage.getItem("loggedInUser"))
   
-
-  const userInfo = JSON.parse(localStorage.getItem(loggedInUser))
-
   const onLogin = (email) => {
     setLoggedInUser(email);
     localStorage.setItem("loggedInUser" , email)
@@ -50,11 +46,6 @@ function App() {
           <Route path="/PostView" >
               <Route path=":id" element={<PostView loggedInUser = {loggedInUser}/>}></Route>
           </Route>
-          <Route path="/PublicPosts" element={<PublicPosts loggedInUser = {loggedInUser}/>}></Route>
-          <Route path="/PublicPostView" >
-              <Route path=":id" element={<PublicPostView loggedInUser = {loggedInUser}/>}></Route>
-          </Route>
-          
           <Route path="/create" element={<CreatePost loggedInUser = {loggedInUser}/>}></Route>
         </Routes>
         
@@ -62,10 +53,6 @@ function App() {
         <Footer></Footer>
       
       </BrowserRouter>
-
-
-
-
 
   );
 }
