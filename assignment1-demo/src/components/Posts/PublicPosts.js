@@ -15,8 +15,8 @@ function PublicPosts() {
 
             {
                 publicPosts.posts.map((post) =>(
-                    <div className='posts-snippet'>
-                        <Link key={post.id} to={`/PostView/${post.id}`}><h1>{post.title}</h1></Link>
+                    <div key={post.id} className='posts-snippet'>
+                        <Link key={post.id} to={`/PublicPostView/${post.id}`}><h1>{post.title}</h1></Link>
                         <p>{post.body}</p>
                         
                         {/* <div className='post-buttons'>

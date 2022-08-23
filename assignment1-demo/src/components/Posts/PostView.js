@@ -11,7 +11,7 @@ const PostView = (user) => {
     const [found, setFound] = useState(false)
     const [userParsed, setUser] = useState(JSON.parse(localStorage.getItem(user.loggedInUser)))
     const [edit, setEdit] = useState(false)
-    const [replyComment, setReplyCOmment] = useState('')
+    const [replyComment, setReplyComment] = useState('')
     const [body, setBody] = useState('')
     const [reply, setReply] = useState('')
     const [refresh, setRefresh] = useState(false)
@@ -87,6 +87,24 @@ const PostView = (user) => {
 
     }
 
+    function updatePublicPosts(replyObj) {
+
+
+        // Should find the post to add the reply to in the PubllicPosts from localstorage
+        let publicPosts = JSON.parse(localStorage.getItem("PublicPosts"))
+        
+        for (let i = 0; i < publicPosts.posts.length; ++i) {
+            
+            if (publicPosts.posts[i].id === parseInt(idObj.id)) {
+
+                publicPosts.posts[i].replies.push(replyObj)
+                localStorage.setItem("PublicPosts", JSON.stringify(publicPosts))        // Updates the PublicPosts
+
+            }
+        }
+        
+    }
+
     function submitreply() {
 
         const replyObj = {
@@ -96,8 +114,12 @@ const PostView = (user) => {
             date: new Date(),
             replies: [],
         }
+        
+        updatePublicPosts(replyObj)
+
         userParsed.posts[postIndex].replies.unshift(replyObj)
         localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))
+
 
         setRefresh(true)
 
@@ -122,7 +144,7 @@ const PostView = (user) => {
     }
 
 
-    if (found === false) {
+    if ((found === false)) {
         getPostFromParams()
     }
 

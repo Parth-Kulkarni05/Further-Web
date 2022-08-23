@@ -13,7 +13,7 @@ import ProfilePosts from "./components/Posts/ProfilePosts";
 import CreatePost from "./components/Posts/CreatePost";
 import PostView from "./components/Posts/PostView";
 import PublicPosts from "./components/Posts/PublicPosts";
-
+import PublicPostView from "./components/Posts/PublicPostView";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState(localStorage.getItem("loggedInUser"))
@@ -47,9 +47,12 @@ function App() {
           <Route path="/Profile" element={<Profile loggedInUser = {loggedInUser} onLogout = {onLogout} />}></Route>
           <Route path="/ProfileManage" element={<ProfileManage loggedInUser = {loggedInUser} />}></Route>
           <Route path="/ProfilePosts" element={<ProfilePosts loggedInUser = {loggedInUser}/>}></Route>
-          <Route path="/PublicPosts" element={<PublicPosts loggedInUser = {loggedInUser}/>}></Route>
           <Route path="/PostView" >
               <Route path=":id" element={<PostView loggedInUser = {loggedInUser}/>}></Route>
+          </Route>
+          <Route path="/PublicPosts" element={<PublicPosts loggedInUser = {loggedInUser}/>}></Route>
+          <Route path="/PublicPostView" >
+              <Route path=":id" element={<PublicPostView loggedInUser = {loggedInUser}/>}></Route>
           </Route>
           
           <Route path="/create" element={<CreatePost loggedInUser = {loggedInUser}/>}></Route>
