@@ -129,13 +129,14 @@ const PostView = (user) => {
 
                 // Else, show body in textarea for editing and submit button
 
+            <div>
+                <div className='post-upper'>
 
-            <div className='post-upper'>
-
-                <textarea cols="79" rows="20" value={body === "" ? (userParsed.posts[postIndex].body) : body} onChange={bodyinput}></textarea>
-                
-                <div className='post-buttons'>
-                    <button onClick={submit}>Submit</button>
+                    <textarea cols="79" rows="20" value={body === "" ? (userParsed.posts[postIndex].body) : body} onChange={bodyinput}></textarea>
+                    
+                    <div className='post-buttons'>
+                        <button onClick={submit}>Submit</button>
+                    </div>
                 </div>
             </div>
 
