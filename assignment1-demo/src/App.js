@@ -2,7 +2,7 @@ import Header from "./global_files/Header";
 import MainContent from "./components/LandingPage/MainContent"
 import Footer from "./global_files/Footer";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import SignUp from "./components/SignUpPage/signUp.js"
+import SignUp from "./components/SignUpPage/signup.js"
 import LoginPage from "./components/LoginPage/Login"
 import Profile from "./components/Profile_Page/Profile";
 import { ToastContainer } from 'react-toastify';
