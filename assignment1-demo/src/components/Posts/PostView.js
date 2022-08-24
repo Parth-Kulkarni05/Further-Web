@@ -1,5 +1,5 @@
 import {  useNavigate, useParams } from 'react-router-dom';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Comment from './Comment';
 import "./PostView.css"
 
@@ -13,7 +13,6 @@ const PostView = (user) => {
     const [edit, setEdit] = useState(false)
     const [body, setBody] = useState('')
     const [reply, setReply] = useState('')
-    const [refresh, setRefresh] = useState(false)
     let navigate = useNavigate();
 
 
@@ -82,10 +81,10 @@ const PostView = (user) => {
         userParsed.posts[postIndex].replies.unshift(replyObj)
         localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))
 
-
-        setRefresh(true)
+        setPost(userParsed.posts[postIndex])
 
     }
+
 
 
 
@@ -94,15 +93,8 @@ const PostView = (user) => {
         getPostFromParams()
     }
 
-    function refreshPage() {
-            // To allow for the comments to render from localStorage to the page
+    
 
-        if (refresh) {
-            window.location.reload()
-            setRefresh(false)
-        }
-        
-    }
 
 
     return (
@@ -170,7 +162,7 @@ const PostView = (user) => {
 
             </div>
 
-            {refreshPage()}
+            {/* {refreshPage()} */}
                         
         </div>
     )
