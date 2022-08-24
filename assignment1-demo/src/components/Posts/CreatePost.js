@@ -107,9 +107,9 @@ function CreatePost(user) {
             
             <div className='post-buttons'>
                 <input type="file" accept='' onChange = {handleImage} name ='upload' />
+                <button onClick={submitpost} className = 'create-post-submit-button'>Submit</button>
             </div>
-            <button onClick={submitpost} className = 'create-post-submit-button'>Submit</button>
-
+            
         
 
             {image && (
