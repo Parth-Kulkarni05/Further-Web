@@ -6,6 +6,7 @@ function CreatePost(user) {
 
     const [body, setBody] = useState("")
     const [title, setTitle] = useState("")
+    const [image, setImage] = useState("")
     const navigate = useNavigate()
 
     function bodyinput(event) {
@@ -15,6 +16,32 @@ function CreatePost(user) {
     function titleinput(event) {
         setTitle(event.target.value)
     }
+
+    function handleImage(event) {
+
+        const media_options = ['image/gif','image/jpeg','image/png']
+
+        if (event.target.files && event.target.files.length > 0 && media_options.includes(event.target.files[0]['type'])){
+            setImage(event.target.files[0])
+        }
+        
+        else if (event.target.files && event.target.files.length > 0){
+            event.target.value = ''
+            return(
+                window.alert("You have not picked an image media file!")
+
+            )
+        }
+
+    }
+
+    function removeSelectedImage(){
+        setImage(null)
+
+    }
+
+
+
 
     function submitpost() {
 
@@ -29,6 +56,8 @@ function CreatePost(user) {
         }
         else {
 
+            console.log(image)
+
         
             const post = {
                 title: title,
@@ -36,11 +65,14 @@ function CreatePost(user) {
                 body: body,
                 id: Date.now(),
                 replies: [],
+                image: image ? URL.createObjectURL(image): ''
             }
+
+            console.log(post)
             
 
-            const userParsed = JSON.parse(localStorage.getItem(user.loggedInUser))    // Extracts users object of information for updating into object
-            
+            let userParsed = JSON.parse(localStorage.getItem(user.loggedInUser))    // Extracts users object of information for updating into object
+        
             userParsed.posts.push(post)
 
             localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))     // Updates the user JSON object
@@ -74,11 +106,35 @@ function CreatePost(user) {
             </div>
             
             <div className='post-buttons'>
-                <button onClick={submitpost}>Submit</button>
-                <button>Upload image</button>
+                <input type="file" accept='' onChange = {handleImage} name ='upload' />
+                <button onClick={submitpost} className = 'create-post-submit-button'>Submit</button>
             </div>
+            
+        
+
+            {image && (
+
+                <div className='image-preview-container'>
+                    <div className='image-cancel'>
+                        <button onClick={removeSelectedImage} className = 'remove-image-button'> Remove This Image </button>
+                    </div>           
+                
+                    <div className='image-container'>
+                        <div className='image-cancel'>
+
+                             <img src={URL.createObjectURL(image)} alt = '' className='preview-resize'></img>
+                        </div>
+                    </div>
+                    
+            </div>
+            )};   
+
+
 
         </div>
+                
+    
+    
     )
 
 }

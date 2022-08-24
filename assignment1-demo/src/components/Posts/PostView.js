@@ -14,8 +14,7 @@ const PostView = (user) => {
     const [body, setBody] = useState('')
     const [reply, setReply] = useState('')
     let navigate = useNavigate();
-
-
+    
 
     function getPostFromParams() {
 
@@ -25,6 +24,7 @@ const PostView = (user) => {
         const userInfo = localStorage.getItem(user.loggedInUser)
         const userParsed = JSON.parse(userInfo)
 
+
         for (let i=0; i < userParsed.posts.length; ++i) {
             if (userParsed.posts[i].id === parseInt(idObj.id)) {
                 setPost(userParsed.posts[i])
@@ -32,6 +32,11 @@ const PostView = (user) => {
                 setFound(true)
             }
         }
+
+        console.log(userParsed)
+
+
+
 
     }
 
@@ -115,6 +120,14 @@ const PostView = (user) => {
                     <button value={post.id} onClick={deletePost}>Delete post</button>
                     <button value={post.id} onClick={() => setEdit(true)}>Edit post</button>
                 </div>
+
+
+                <div className='image-rendering'>
+
+
+                    <img src={post.image} alt = ''></img>
+            </div>
+
             </div>
 
             ) : 
@@ -125,6 +138,7 @@ const PostView = (user) => {
                 <div className='post-upper'>
 
                     <textarea cols="79" rows="20" value={body === "" ? (userParsed.posts[postIndex].body) : body} onChange={bodyinput}></textarea>
+            
                     
                     <div className='post-buttons'>
                         <button onClick={submit}>Submit</button>

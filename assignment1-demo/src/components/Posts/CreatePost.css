@@ -2,13 +2,16 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    min-height: 100vh;
+
 }
 
-.create-post-container button {
+.create-post-submit-button{
     width: 100px;
     height: 30px;
     align-self: center;
 }
+
 
 .post-buttons {
     display: flex;
@@ -60,4 +63,28 @@
     display: flex;
     flex-direction: column;
     align-self: center;
+}
+
+
+.image-cancel{
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    
+}
+
+.remove-image-button{
+    padding: 30px;
+    color: black;
+  
+}
+
+.image-container{
+    display: flex;
+    justify-content: center;
+}
+
+.preview-resize{    
+    height: 1000px;
+    width: 700px;
 }

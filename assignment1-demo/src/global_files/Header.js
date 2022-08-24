@@ -19,7 +19,7 @@ const Header = ({loggedInUser, onLogout}) => {
       
             <ul className = "nav-links">
               <Link to = "/" className="links"><li onClick={() => onLogout()}>Sign out</li></Link>
-              <Link to = "/Profile" className="links"><li>Profile Managment</li></Link>
+              <Link to = "/Profile" className="links"><li>Profile Management</li></Link>
               <Link to = "/create" className="links"><li>Create post</li></Link>
               <Link to = "/ProfilePosts" className="links"><li>My Posts</li></Link>
               <Link to = "/PublicPosts" className="links">Forum</Link>
