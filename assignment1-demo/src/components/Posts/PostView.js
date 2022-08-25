@@ -133,7 +133,7 @@ const PostView = (user) => {
                 <div className='image-rendering'>
 
 
-                    <img src={post.image} alt = ''></img>
+                    <img src={post.image} alt = '' className = 'image-rendered-post-view'></img>
             </div>
 
             </div>

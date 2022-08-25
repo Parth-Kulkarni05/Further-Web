@@ -48,6 +48,11 @@ button:hover {
     opacity: 0.5;
 }
 
+.image-rendered-post-view{
+    height: 1000px;
+    width: 1100px;
+}
+
 
 .comments {
     display: flex;
