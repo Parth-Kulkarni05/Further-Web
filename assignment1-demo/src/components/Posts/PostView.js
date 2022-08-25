@@ -15,7 +15,6 @@ const PostView = (user) => {
     const [reply, setReply] = useState('')
     let navigate = useNavigate();
 
-    console.log(userParsed)
     
 
     function getPostFromParams() {
@@ -66,7 +65,6 @@ const PostView = (user) => {
     function editing(){
 
         setEdit(true)
-
         
     
     };
@@ -98,6 +96,7 @@ const PostView = (user) => {
         localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))
 
         setPost(userParsed.posts[postIndex])
+        setReply("")
 
     }
 
