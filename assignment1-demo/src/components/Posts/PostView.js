@@ -14,6 +14,8 @@ const PostView = (user) => {
     const [body, setBody] = useState('')
     const [reply, setReply] = useState('')
     let navigate = useNavigate();
+
+    console.log(userParsed)
     
 
     function getPostFromParams() {
@@ -60,6 +62,15 @@ const PostView = (user) => {
         alert("Post deleted!")
 
     }
+
+    function editing(){
+
+        setEdit(true)
+
+        
+    
+    };
+
 
     function submit() {
             // Submits the data from the form into html localstorage
@@ -118,13 +129,11 @@ const PostView = (user) => {
                 <p>{post.body}</p>
                 <div className='post-buttons'>
                     <button value={post.id} onClick={deletePost}>Delete post</button>
-                    <button value={post.id} onClick={() => setEdit(true)}>Edit post</button>
+                    <button value={post.id} onClick={editing}>Edit post</button>
                 </div>
 
 
-                <div className='image-rendering'>
-
-
+            <div className='image-rendering'>
                     <img src={post.image} alt = '' className = 'image-rendered-post-view'></img>
             </div>
 
