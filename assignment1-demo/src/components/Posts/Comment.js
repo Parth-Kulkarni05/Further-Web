@@ -1,11 +1,11 @@
-import React, { useState} from "react";
+import React, { useEffect, useState} from "react";
 import "./Comment.css"
 
 function Comment(props) {
 
     const [replying, setReplying] = useState(false)
     const [replyText, setReplyText] = useState('')
-
+    const [content, setContent] = useState(props.content)      // Reply
 
     function replytextinput(event) {
         setReplyText(event.target.value)
@@ -36,10 +36,12 @@ function Comment(props) {
                 // Then, add replyObj to its replies array
                 userInfo.posts[postIndex].replies[i].replies.unshift(replyObj)
                 localStorage.setItem(props.loggedIn, JSON.stringify(userInfo))
+
+                setContent(userInfo.posts[postIndex].replies[i])
             }
         }
 
-
+        setReplyText("")
         setReplying(false)
         // console.log(replyObj)
         // window.location.reload()
@@ -69,9 +71,9 @@ function Comment(props) {
 
             <div>
                 
-                {props.content.replies.length > 0 ? (
+                {content.replies.length > 0 ? (
                     <div className="nested-comments">
-                        {props.content.replies.map((reply) => (
+                        {content.replies.map((reply) => (
                             
                             <div className="comment" key={reply.id}>
                                 <small>{reply.user} {props.userObj.firstname}</small>
