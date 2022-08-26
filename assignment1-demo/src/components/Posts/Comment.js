@@ -41,8 +41,8 @@ function Comment(props) {
 
 
         setReplying(false)
-        console.log(replyObj)
-        window.location.reload()
+        // console.log(replyObj)
+        // window.location.reload()
     }
 
 
