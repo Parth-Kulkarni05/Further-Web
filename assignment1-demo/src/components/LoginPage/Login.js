@@ -4,6 +4,8 @@ import React, { useState, useEffect, Redirect, Navigate} from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Login.css';
+import {error_Login} from '../Validation_rules/validation'
+
 
 function Login ({onLogin}){
     
@@ -12,6 +14,13 @@ function Login ({onLogin}){
     const [password, setPassword] = useState('')
 
     let navigate = useNavigate();
+
+    useEffect(() => {
+        if (valid){
+            success()
+            redirect()
+        }
+    }) 
 
 
         // Saves input in state variables
@@ -23,15 +32,7 @@ function Login ({onLogin}){
         setPassword(event.target.value)
     }
 
-    function Error() {
-        if ((valid === false)){
-            return (
-                <div className='AlertMessage'>Error: Incorrect Email or Password</div>
-            )
-        } 
-        } 
-    
-    
+     
     function success() {
         if (valid === true){                
             toast.success('Log-In Sucessful', {
@@ -39,8 +40,14 @@ function Login ({onLogin}){
             })
     }
     }
-        
 
+    
+    function submit(event) {
+        event.preventDefault();
+        validate()
+
+    }
+        
 
         // Validates input
     function validate() {
@@ -77,13 +84,6 @@ function Login ({onLogin}){
 
         }   
 
-    function submit() {
-        // console.log(firstname, lastname + '\n Soon to validate')
-
-        validate()
-
-    }
-
 
     function redirect() {
 
@@ -108,30 +108,25 @@ function Login ({onLogin}){
 
             <div className="login-form">
 
-                <form className = "login-box">
+                <form onSubmit={submit}>
+
+                <div className = "login-box">
                     <label htmlFor="email">Email Address: </label>
-                    <input type='text' id="email-text" onChange={emailinput} required placeholder='John82@test.com.au'></input>
-                    {Error()}
-                </form>
+                    <input type='text' id="email-text" onChange={emailinput}  placeholder='John82@test.com.au'></input>
+                    {error_Login(valid)}
+                </div>
 
-                <form className = "login-box">
+                <div className = "login-box">
                     <label htmlFor="password">Password: </label>
-                    <input type='password' id="password-text" onChange={passwordinput} required placeholder='Enter a strong password'></input>
-                    {Error()}
-                </form>
+                    <input type='password' id="password-text" onChange={passwordinput}  placeholder='Enter a strong password'></input>
+                    {error_Login(valid)}
+                </div>
                 
-                <button type="submit" onClick ={(e) => submit(e)} className="submit-button">Log in</button>
+                <button type="submit" className="submit-button">Log in</button>
+
+                </form>
+
             </div>
-
-
-            {success()}
-       
-            {redirect()}
-
-
-            
-            {/* <button onClick={props.stuff}></button> */}
-            {/* {redirect()} */}
             
         </div>
 

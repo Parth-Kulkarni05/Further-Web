@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Signup.css'
 import profile_pic_default_base64_encoding from './default_pfp';
+import {emailError, nameError, passwordError, emailCheck, date_generate} from '../Validation_rules/validation'
 /* eslint-disable no-useless-escape */
 
 
@@ -54,6 +55,13 @@ const SignUp = ({onLogin}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    useEffect(() => {
+        if (valid){
+            successful();
+            redirect();
+        }
+    })
+
 
     let navigate = useNavigate();
 
@@ -75,60 +83,14 @@ const SignUp = ({onLogin}) => {
         setPassword(event.target.value)
     }
 
-    function emailError() {
-        console.log("yeh error mate email")
-        if ((valid === false) && ((email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) === null))){
-            return (
-                <div className='AlertMessage'>Error: Make sure email formatting is correct </div>
-            )
-        }
-
+    function submit(event) {
+        event.preventDefault();
+        validate()        
     }
 
-    function nameError(nameType){
-        if ((valid === false) && ((nameType.match(/^[a-zA-Z]+$/) === null))){
-            return (
-                <div className='AlertMessage'>Error: Remove numbers or symbols from name</div>
-            )
 
-            }     
-    }
 
-    function passwordError(){
-        if ((valid === false) && ((password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/) === null))){
-            return (
-                <div className='AlertMessage'>Error: Passwords should contain 8 to 15 characters, one uppercase letter, one numeric digit and one special character. </div>
-            )
-
-            }
-    }
-
-    function emailCheck(){
-
-        let email_detected = false
-        
-        for(let i = 0; i < localStorage.length; i++){
-            let key_local_storage = localStorage.key(i);
-
-            if (key_local_storage === email){
-                email_detected = true;
-            }
-
-        }
-
-        if (email_detected === true){
-            return(
-                <div className='AlertMessage'>This email already exists within system!</div>
-            )
-
-        }
-
-        return email_detected;
-
-    }
-    
-
-    function sucessful(){
+    function successful(){
         if (valid === true){                
             toast.success('Sign-In Sucessful', {
                 toastId: 'success1',
@@ -136,15 +98,12 @@ const SignUp = ({onLogin}) => {
     }
     }
 
-
-
-
         // Validates input
     function validate() {
 
         /* eslint-disable no-useless-escape */
 
-        if(!emailCheck() && email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) && firstname.match(/^[a-zA-Z]+$/) 
+        if(email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) && firstname.match(/^[a-zA-Z]+$/) 
             && lastname.match(/^[a-zA-Z]+$/) && password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/))
         {
             setValid(true)
@@ -154,39 +113,15 @@ const SignUp = ({onLogin}) => {
         }
         else {
             setValid(false)
-
+            
         }   
     }
 
-    function submit() {
-        // console.log(firstname, lastname + '\n Soon to validate')
-
-        validate()        
-    }
-
-
+    
     function redirect() {
 
         if (valid) {
             // Submits data to localstorage (if valid)
-
-            const monthNames = ["January", "February", "March", "April", "May", "June",
-                                "July", "August", "September", "October", "November", "December"
-                               ];
-
-
-
-            const currDate = new Date().getDate().toString();
-            const currYear = new Date().getFullYear().toString();
-            const currMonth = monthNames[new Date().getMonth()];
-            const currDay = new Date().toLocaleString('en-US', {weekday: 'long'});
-        
-            const finalDate = 'Joined: ' + currDay + " " + currDate + " " + currMonth + " " + currYear
-
-            /* Day, Month, Date, Year */
-
-
-
 
             localStorage.setItem(email,JSON.stringify({
                 firstname:firstname,
@@ -194,7 +129,7 @@ const SignUp = ({onLogin}) => {
                 email:email,
                 password:password,
                 profile_pic: profile_pic_default_base64_encoding(),
-                date_joined: finalDate,
+                date_joined: date_generate(),
                 posts: [],
             }))
 
@@ -229,46 +164,40 @@ const SignUp = ({onLogin}) => {
 
             <div className="signup-form">
 
-                <form className = "signup-box">
+                <form onSubmit={submit}>
+
+                <div className = "signup-box">
                     <label htmlFor="email">Email Address: </label>
-                    <input type='textarea' id="email-text" onChange={emailinput} required placeholder='John82@test.com.au'></input>
-                    {emailError()}
-                    {emailCheck()}
-                    
+                    <input type='textarea' id="email-text" onChange={emailinput}  placeholder='John82@test.com.au' ></input>
+                    {emailError(valid, email)}
+                    {emailCheck(email)}
 
+                </div>
 
-                </form>
-
-                <form className = "signup-box">
+                <div className = "signup-box">
                     <label htmlFor="first-name">First Name: </label>
-                    <input type='text' id="first-name-text" onChange={firstnameinput} required placeholder='John'></input>
-                    {nameError(firstname)}
+                    <input type='text' id="first-name-text" onChange={firstnameinput}  placeholder='John' maxLength={15}></input>
+                    {nameError(valid,firstname)}
 
-                </form>
+                </div>
                 
-                <form className = "signup-box">
+                <div className = "signup-box">
                     <label htmlFor="last-name">Last Name: </label>
-                    <input type='text' id="last-name-text" onChange={lastnameinput} required placeholder='Patel'></input>
-                    {nameError(lastname)}
+                    <input type='text' id="last-name-text" onChange={lastnameinput}  placeholder='Patel'></input>
+                    {nameError(valid,lastname)}
 
-                </form>
+                </div>
 
-                <form className = "signup-box">
+                <div className = "signup-box">
                     <label htmlFor="password">Password: </label>
-                    <input type='password' id="password-text" onChange={passwordinput} required placeholder='Enter a strong password'></input>
-                    {passwordError()}
+                    <input type='password' id="password-text" onChange={passwordinput}  placeholder='Enter a strong password'></input>
+                    {passwordError(valid, password)}
+
+                </div>
+
+                <button type="submit" className="submit-button">Sign up</button>
 
                 </form>
-
-                <button type="submit" onClick ={(e) => submit(e)} className="submit-button">Sign up</button>
-
-                
-            
-
-                {sucessful()} 
-
-                {redirect()}
- 
 
                 </div>
             

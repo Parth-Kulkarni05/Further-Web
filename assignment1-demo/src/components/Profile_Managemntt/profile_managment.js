@@ -1,10 +1,12 @@
 import { BrowserRouter, NavLink, Routes, Route, useNavigate, Link } from 'react-router-dom';
 import React, { useState, useEffect, Redirect, Navigate} from "react";
 import './profile_manage.css';
+import {emailError, nameError, emailCheck_ProfileChange } from '../Validation_rules/validation'
 
 
 
-const ProfileManage = ({loggedInUser, onLogin}) =>{
+
+const ProfileManage = ({loggedInUser, onLogin}) => {
     
     const userInfo = localStorage.getItem(loggedInUser)
     const userParsed = JSON.parse(userInfo)
@@ -14,6 +16,7 @@ const ProfileManage = ({loggedInUser, onLogin}) =>{
 
     const[updatedfirstname, setnewfirstname] = useState(userParsed.firstname)
     const[updatedlastname, setnewlastname] = useState(userParsed.lastname)
+    const originalemail = userParsed.email
     const[updatedemail, setnewemail] = useState(userParsed.email) 
     const[valid, setValid] = useState(null)
 
@@ -41,10 +44,15 @@ const ProfileManage = ({loggedInUser, onLogin}) =>{
     function handleSave(e){
         e.preventDefault();
         validate();
+
     }
 
+    function cancelChanges(){
+        navigate(-1)
+    
+    }
 
-    function validate(e){
+    function validate(){
 
         /* eslint-disable no-useless-escape */
 
@@ -79,15 +87,6 @@ const ProfileManage = ({loggedInUser, onLogin}) =>{
             // Reset all the posts and replies' email of the user to the updated email
             // by iterating through all of them and changing their user (email) attribute
 
-            for (let i = 0; i < userParsed.posts.length; ++i) {
-                userParsed.posts[i].user = updatedemail
-                for (let j = 0; j < userParsed.posts[i].replies.length; ++j) {
-                    userParsed.posts[i].replies[j].user = updatedemail
-                    for (let k = 0; k < userParsed.posts[i].replies[j].replies.length; ++k) {
-                        userParsed.posts[i].replies[j].replies[k].user = updatedemail
-                    }
-                }
-            }
             localStorage.setItem(updatedemail, JSON.stringify(userParsed))
             onLogin(updatedemail)
 
@@ -125,21 +124,25 @@ const ProfileManage = ({loggedInUser, onLogin}) =>{
                         <div className= 'user-info-manage'>
                             <label> First Name:</label>
                             <input type = "text" className='input-manage' defaultValue = {userParsed.firstname} onChange = {setfirstName}></input>
+                            {nameError(valid, updatedfirstname)}
                         </div>
 
                         <div className= 'user-info-manage'>
                             <label> Last Name:</label>
                             <input type = "text" defaultValue = {userParsed.lastname} onChange = {setlastName}></input>
+                            {nameError(valid, updatedlastname)}
                         </div>
 
                         <div className='user-info-manage'>
                             <label> Your Email:</label>
-                            <input type= "email" defaultValue = {userParsed.email} onChange = {setemail}></input>
+                            <input type= "text" defaultValue = {userParsed.email} onChange = {setemail}></input>
+                            {emailError(valid, updatedemail)}
+                            {emailCheck_ProfileChange(originalemail, updatedemail)}
 
                         </div>
 
                         <div className='cancel-save-buttons'>
-                            <button className='delete-account'> Cancel Operation</button>
+                            <button className='delete-account' onClick={cancelChanges}> Cancel Operation</button>
                             <button type='submit' className='delete-account' > Save Changes</button>
                         </div>
 

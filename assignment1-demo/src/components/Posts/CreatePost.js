@@ -1,13 +1,15 @@
 import { useNavigate } from 'react-router-dom';
-import React, { useState} from "react";
+import React, { useState, useRef} from "react";
 import "./CreatePost.css"
 
 function CreatePost(user) {
 
     const [body, setBody] = useState("")
     const [title, setTitle] = useState("")
-    const [image, setImage] = useState("")
+    const [image, setImage] = useState('')
+    const [invalidimage, setInvalid] = useState(null)
     const navigate = useNavigate()
+    const ref = useRef(null)
 
     function bodyinput(event) {
         setBody(event.target.value)
@@ -19,26 +21,34 @@ function CreatePost(user) {
 
     function handleImage(event) {
 
-        const media_options = ['image/gif','image/jpeg','image/png']
-
-        if (event.target.files && event.target.files.length > 0 && media_options.includes(event.target.files[0]['type'])){
-            setImage(event.target.files[0])
-        }
-        
-        else if (event.target.files && event.target.files.length > 0){
-            event.target.value = ''
-            return(
-                window.alert("You have not picked an image media file!")
-
-            )
-        }
-
+        setImage(event.target.value)
     }
 
     function removeSelectedImage(){
-        setImage(null)
+        setImage('')
+        ref.current.value = ''
 
     }
+
+    function handleBrokenImage(){
+        setImage(null)
+        setInvalid(true)
+    }
+
+    function displayError(){
+
+        if ((setInvalid) && (image === null)){
+            return (
+                <div className='AlertMessage'> Image Link is Incorrect</div>
+            )
+        } 
+
+        else if ((setInvalid) && (image !== null) && (image.length > 0)){
+            return(
+                <div className='AlertMessage'> Image Loaded Below</div>
+            )
+        }
+}
 
 
 
@@ -65,7 +75,7 @@ function CreatePost(user) {
                 body: body,
                 id: Date.now(),
                 replies: [],
-                image: image ? URL.createObjectURL(image): ''
+                image: image.length > 0 ? image : false
             }
 
             console.log(post)
@@ -106,14 +116,22 @@ function CreatePost(user) {
             </div>
             
             <div className='post-buttons'>
-                <input type="file" accept='' onChange = {handleImage} name ='upload' />
-                <button onClick={submitpost} className = 'create-post-submit-button'>Submit</button>
+                <label>Enter URL: (Can be Local or Image Address Sourced Online)</label>
+                <input type="text" onChange = {handleImage} name ='upload' ref={ref}/>
             </div>
+
+            <div className='image-link-error'>
+
+                {displayError()}
+
+            </div>
+
             
-        
+            <button onClick={submitpost} className = 'create-post-submit-button'>Submit</button>
+ 
 
             {image && (
-
+            
                 <div className='image-preview-container'>
                     <div className='image-cancel'>
                         <button onClick={removeSelectedImage} className = 'remove-image-button'> Remove This Image </button>
@@ -122,7 +140,8 @@ function CreatePost(user) {
                     <div className='image-container'>
                         <div className='image-cancel'>
 
-                             <img src={URL.createObjectURL(image)} alt = '' className='preview-resize'></img>
+                             <img src={(image)} onError={handleBrokenImage} alt = '' className='preview-resize'></img>
+
                         </div>
                     </div>
                     

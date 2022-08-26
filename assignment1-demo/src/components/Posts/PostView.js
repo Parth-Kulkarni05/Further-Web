@@ -133,7 +133,10 @@ const PostView = (user) => {
 
 
             <div className='image-rendering'>
-                    <img src={post.image} alt = '' className = 'image-rendered-post-view'></img>
+
+                    {post.image &&(
+                      <img src={post.image} alt = '' className = 'image-rendered-post-view'></img>
+                    )}
             </div>
 
             </div>
@@ -145,12 +148,21 @@ const PostView = (user) => {
             <div>
                 <div className='post-upper'>
 
-                    <textarea cols="79" rows="20" value={body === "" ? (userParsed.posts[postIndex].body) : body} onChange={bodyinput}></textarea>
+                    <textarea cols="79" rows="20" defaultValue={ userParsed.posts[postIndex].body} onChange={bodyinput}></textarea>
             
                     
                     <div className='post-buttons'>
                         <button onClick={submit}>Submit</button>
                     </div>
+
+                    <div className='image-rendering'>
+
+                        {post.image &&(
+                        <img src={post.image} alt = '' className = 'image-rendered-post-view'></img>
+                        )}
+                    
+                    </div>
+
                 </div>
             </div>
 
@@ -183,8 +195,6 @@ const PostView = (user) => {
                 </div>
 
             </div>
-
-            {/* {refreshPage()} */}
                         
         </div>
     )
