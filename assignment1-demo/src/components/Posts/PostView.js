@@ -9,9 +9,9 @@ const PostView = (user) => {
     const [post, setPost] = useState("")
     const [postIndex, setPostIndex] = useState("")
     const [found, setFound] = useState(false)
-    const [userParsed] = useState(JSON.parse(localStorage.getItem(user.loggedInUser)))     // Re-usable
+    const [userParsed, setUserParsed] = useState(JSON.parse(localStorage.getItem(user.loggedInUser)))     // Re-usable
     const [edit, setEdit] = useState(false)
-    const [body, setBody] = useState('')
+    const [body, setBody] = useState(null)
     const [reply, setReply] = useState('')
     let navigate = useNavigate();
 
@@ -33,7 +33,7 @@ const PostView = (user) => {
                 setFound(true)
             }
         }
-
+        
         console.log(userParsed)
 
 
@@ -74,7 +74,13 @@ const PostView = (user) => {
             // Submits the data from the form into html localstorage
             // via setting a stringified json obj.
 
-        userParsed.posts[postIndex].body = body;
+        console.log(userParsed.posts[postIndex].body)
+
+        if (body != null) {
+            userParsed.posts[postIndex].body = body;
+        }
+
+        setUserParsed(userParsed)
         setPost(userParsed.posts[postIndex])
         localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))
         setEdit(false)
