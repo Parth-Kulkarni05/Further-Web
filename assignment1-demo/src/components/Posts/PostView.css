@@ -8,6 +8,10 @@
     margin: 0px 220px;
 }
 
+.post-title{
+    text-align: center;
+}
+
 .post-upper {
     display: flex;
     flex-direction: column;

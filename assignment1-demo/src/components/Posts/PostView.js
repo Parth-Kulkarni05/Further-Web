@@ -1,5 +1,5 @@
 import {  useNavigate, useParams } from 'react-router-dom';
-import React, {useState } from "react";
+import React, {useState, useRef } from "react";
 import Comment from './Comment';
 import "./PostView.css"
 
@@ -15,6 +15,7 @@ const PostView = (user) => {
     const [reply, setReply] = useState('')
     const [image, setImage] = useState('')
     let navigate = useNavigate();
+    let ref = useRef();
 
     
 
@@ -84,14 +85,14 @@ const PostView = (user) => {
     }
 
 
-    function submit() {
+    function submit(event) {
             // Submits the data from the form into html localstorage
             // via setting a stringified json obj.
 
-        console.log(userParsed.posts[postIndex].body)
+        event.preventDefault();
 
-        if ((body !== null) && (body.length > 0 && body.length <=250)) {
-            userParsed.posts[postIndex].body = body;     
+        if (userParsed.posts[postIndex].body != null){
+            userParsed.posts[postIndex].body = ref.current.value;     
             setUserParsed(userParsed)
             setPost(userParsed.posts[postIndex])
             localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))
@@ -100,13 +101,6 @@ const PostView = (user) => {
             post.image = image;
         }
 
-        else if (body.length > 250){
-            window.alert("Your edited post is too large.")
-        }
-
-        else{
-            window.alert("Your edited post cannot be empty.")
-        }
 
     }
 
@@ -155,7 +149,7 @@ const PostView = (user) => {
 
         <div className='post-view'>
 
-            <h1>{post.title}</h1>
+            <h1 className='post-title'>{post.title}</h1>
             <br></br>
 
 
@@ -216,7 +210,7 @@ const PostView = (user) => {
             <div>
                 <div className='post-upper'>
 
-                    <textarea className='post-upper-textarea' cols="79" rows="20" defaultValue={ userParsed.posts[postIndex].body} onChange={bodyinput}></textarea>
+                    <textarea className='post-upper-textarea' cols="79" rows="20" defaultValue={ userParsed.posts[postIndex].body} onChange={bodyinput} ref = {ref}></textarea>
             
                     
                     <div className='post-buttons'>
