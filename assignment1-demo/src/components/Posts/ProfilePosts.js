@@ -21,8 +21,8 @@ function ProfilePosts(user) {
             {
                 userParsed.posts.map((post) =>(
                     <div className='posts-snippet'>
-                        <Link key={post.id} to={`/PostView/${post.id}`}><h1>{post.title}</h1></Link>
-                        <p>{post.body}</p>
+                        <Link key={post.id} to={`/PostView/${post.id}`}><h1>Title: {post.title}</h1></Link>
+                        <p>Content: {post.body}</p>
                         
                         {/* <div className='post-buttons'>
                             <button key={post.id} value={post.id} onClick={deletePost}>Delete post</button>

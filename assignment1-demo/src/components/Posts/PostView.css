@@ -16,7 +16,7 @@
 }
 
 
-.post-upper p {
+.post-upper .post-body{
     align-self: center;
     width: auto;
     padding: 24px 30px;
@@ -26,10 +26,10 @@
 
 .post-upper textarea {
 
-    width: 100%;
     height: auto;
     padding: 20px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    resize: none;
 }
 
 .post-buttons {

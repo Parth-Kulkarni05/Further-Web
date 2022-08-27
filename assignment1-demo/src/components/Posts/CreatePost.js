@@ -95,6 +95,10 @@ function CreatePost(user) {
 
     }
 
+    function cancelpost(){
+        navigate('/Profile')
+    }
+
 
     return (
         <div className='create-post-container'>
@@ -106,18 +110,18 @@ function CreatePost(user) {
             <div className='post-form'>
                 <form className='post-input'>
                     <label htmlFor='title'></label>
-                    <input type='text' placeholder='Enter title' onChange={titleinput}></input>
+                    <input className='title-input' type='text' placeholder='Enter title' onChange={titleinput} maxLength = {150}></input>
                 </form>
 
                 <form className='post-input'>
                     <label htmlFor='text'></label>
-                    <textarea placeholder='write something' onChange={bodyinput}></textarea>
+                    <textarea placeholder='write something....' onChange={bodyinput}></textarea>
                 </form>
             </div>
             
             <div className='post-buttons'>
-                <label>Enter URL: (Can be Local or Image Address Sourced Online)</label>
-                <input type="text" onChange = {handleImage} name ='upload' ref={ref}/>
+                <label>Add Image with Post -- Enter URL: (Can be Local or Image Address Sourced Online)</label>
+                <input type="text" placeholder='https://...' className = 'image-upload-input' onChange = {handleImage} name ='upload' ref={ref}/>
             </div>
 
             <div className='image-link-error'>
@@ -126,9 +130,11 @@ function CreatePost(user) {
 
             </div>
 
-            
-            <button onClick={submitpost} className = 'create-post-submit-button'>Submit</button>
- 
+            <div className='submit-button'>
+                <button onClick={cancelpost} className = 'create-post-cancel-button'> Cancel Post Creation </button>
+                <button onClick={submitpost} className = 'create-post-submit-button'>Submit Post</button>
+
+            </div> 
 
             {image && (
             
@@ -140,7 +146,7 @@ function CreatePost(user) {
                     <div className='image-container'>
                         <div className='image-cancel'>
 
-                             <img src={(image)} onError={handleBrokenImage} alt = '' className='preview-resize'></img>
+                             <img src={(image)} onError={handleBrokenImage} alt = '' className='preview-resize' height={1000} width = {700}></img>
 
                         </div>
                     </div>
