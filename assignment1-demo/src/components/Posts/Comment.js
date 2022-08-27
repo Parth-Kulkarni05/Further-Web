@@ -28,23 +28,28 @@ function Comment(props) {
         let postIndex = props.postIndex
         let postReplies = userInfo.posts[postIndex].replies
 
+        if (replyText.length > 0){
+            
+            // Search for the index of the reply to add to, from JSON file
+            for (let i = 0; i < postReplies.length; ++i) {
+                if (parseInt(postReplies[i].id) === parseInt(props.content.id)) {
+                    
+                    // Then, add replyObj to its replies array
+                    userInfo.posts[postIndex].replies[i].replies.unshift(replyObj)
+                    localStorage.setItem(props.loggedIn, JSON.stringify(userInfo))
 
-        // Search for the index of the reply to add to, from JSON file
-        for (let i = 0; i < postReplies.length; ++i) {
-            if (parseInt(postReplies[i].id) === parseInt(props.content.id)) {
-                
-                // Then, add replyObj to its replies array
-                userInfo.posts[postIndex].replies[i].replies.unshift(replyObj)
-                localStorage.setItem(props.loggedIn, JSON.stringify(userInfo))
-
-                setContent(userInfo.posts[postIndex].replies[i])
+                    setContent(userInfo.posts[postIndex].replies[i])
+                }
             }
-        }
 
-        setReplyText("")
-        setReplying(false)
+            setReplyText("")
+            setReplying(false)
         // console.log(replyObj)
         // window.location.reload()
+       } else{
+        window.alert("Replies cannot be empty!")
+       }
+    
     }
 
 
@@ -82,7 +87,7 @@ function Comment(props) {
                         ))}
                     </div>
                 ) :
-                    ""
+                    ''
                 }
 
             </div>

@@ -26,10 +26,11 @@
 
 .post-upper textarea {
 
+    width: 100%;
     height: auto;
     padding: 20px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    resize: none;
+
 }
 
 .post-buttons {
@@ -95,14 +96,11 @@ button:hover {
     border-radius: 10px;
 }
 
-.comment-section {
-    margin-left: auto; 
-    margin-right: 0;
-}
 
 
 .comment-section {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 100px;
 }

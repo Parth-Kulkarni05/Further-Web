@@ -1,5 +1,5 @@
 import {  useNavigate, useParams } from 'react-router-dom';
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import Comment from './Comment';
 import "./PostView.css"
 
@@ -13,6 +13,7 @@ const PostView = (user) => {
     const [edit, setEdit] = useState(false)
     const [body, setBody] = useState(null)
     const [reply, setReply] = useState('')
+    const [image, setImage] = useState('')
     let navigate = useNavigate();
 
     
@@ -34,8 +35,6 @@ const PostView = (user) => {
             }
         }
         
-        console.log(userParsed)
-
 
 
 
@@ -65,9 +64,24 @@ const PostView = (user) => {
     function editing(){
 
         setEdit(true)
-        
+        setImage(post.image)
+        console.log(image)
     
     };
+
+    function removeSelectedImage(){
+        setImage(null)
+        userParsed.posts[postIndex].image = false
+    
+    }
+
+    function handleImage(event){
+        setImage(event.target.value)
+    }
+
+    function handleBrokenImage(){
+        setImage(null)
+    }
 
 
     function submit() {
@@ -76,16 +90,26 @@ const PostView = (user) => {
 
         console.log(userParsed.posts[postIndex].body)
 
-        if (body != null) {
-            userParsed.posts[postIndex].body = body;
+        if ((body !== null) && (body.length > 0 && body.length <=250)) {
+            userParsed.posts[postIndex].body = body;     
+            setUserParsed(userParsed)
+            setPost(userParsed.posts[postIndex])
+            localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))
+            setEdit(false)
+
+            post.image = image;
         }
 
-        setUserParsed(userParsed)
-        setPost(userParsed.posts[postIndex])
-        localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))
-        setEdit(false)
+        else if (body.length > 250){
+            window.alert("Your edited post is too large.")
+        }
+
+        else{
+            window.alert("Your edited post cannot be empty.")
+        }
 
     }
+
 
     function submitreply() {
 
@@ -96,13 +120,22 @@ const PostView = (user) => {
             date: new Date(),
             replies: [],
         }
+
+        console.log(reply)
+
+        if (reply.length > 0) {
+
+            userParsed.posts[postIndex].replies.unshift(replyObj)
+            localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))
+
+            setPost(userParsed.posts[postIndex])
+            setReply("")
+        }
         
-
-        userParsed.posts[postIndex].replies.unshift(replyObj)
-        localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))
-
-        setPost(userParsed.posts[postIndex])
-        setReply("")
+        
+        else{
+            window.alert("You comment cannot be empty.")
+        }
 
     }
 
@@ -119,10 +152,12 @@ const PostView = (user) => {
 
 
     return (
+
         <div className='post-view'>
 
             <h1>{post.title}</h1>
             <br></br>
+
 
             
             {edit === false ? (
@@ -131,7 +166,7 @@ const PostView = (user) => {
 
             
             <div className='post-upper'>
-                <p>{post.body}</p>
+                <p className='post-body'>{post.body}</p>
                 <div className='post-buttons'>
                     <button value={post.id} onClick={deletePost}>Delete post</button>
                     <button value={post.id} onClick={editing}>Edit post</button>
@@ -144,9 +179,36 @@ const PostView = (user) => {
                       <img src={post.image} alt = '' className = 'image-rendered-post-view'></img>
                     )}
             </div>
+                        
+            <div className='comments'>
 
+            <div className='comments-add'>
+                <textarea onChange={replyinput} placeholder="Add a comment to this post"></textarea>
+                <button onClick={submitreply} className='add-comment'>Add a comment</button>
             </div>
 
+            <div className='comment-section'>
+
+                {post.replies ? (
+
+                    post.replies.map((reply) => (
+                        <div key = {reply.id}>
+                            <small>{reply.user} {userParsed.firstname}</small>
+
+                            <Comment userObj={userParsed} postIndex={postIndex} loggedIn={user.loggedInUser} content={reply}/>
+                        </div>
+                    ))
+
+                ) :
+
+                    <div><h1>No comments on this post yet :)</h1></div>
+                }
+            </div>
+
+            </div>
+        
+            </div>
+ 
             ) : 
 
                 // Else, show body in textarea for editing and submit button
@@ -154,7 +216,7 @@ const PostView = (user) => {
             <div>
                 <div className='post-upper'>
 
-                    <textarea cols="79" rows="20" defaultValue={ userParsed.posts[postIndex].body} onChange={bodyinput}></textarea>
+                    <textarea className='post-upper-textarea' cols="79" rows="20" defaultValue={ userParsed.posts[postIndex].body} onChange={bodyinput}></textarea>
             
                     
                     <div className='post-buttons'>
@@ -162,11 +224,43 @@ const PostView = (user) => {
                     </div>
 
                     <div className='image-rendering'>
-
-                        {post.image &&(
-                        <img src={post.image} alt = '' className = 'image-rendered-post-view'></img>
-                        )}
                     
+                    <div className='box-rendering'>
+
+                    
+                    {!image && (           
+                            <div className='post-buttons'>
+                            <label>Add Image with Post -- Enter URL: (Can be Local or Image Address Sourced Online)</label>
+                            <input type="text" placeholder='https://...' className = 'image-upload-input' onChange = {handleImage} name ='upload'/>
+                        </div>
+                    )}
+
+
+                    
+                    </div>
+
+
+
+
+                    {image &&(    
+                        <div className='image-rendering'>
+
+                            <div className='image-preview-container'>
+                                    <div className='image-cancel'>
+                                        <button onClick={removeSelectedImage} className = 'remove-image-button'> Remove This Image </button>
+                                    </div>  
+                            
+                            </div>
+
+                            <div className='image-rendering'>
+                                <img src={image} onError = {handleBrokenImage} alt = '' className = 'image-rendered-post-view'></img>
+
+                                </div>
+                            
+                            </div>
+
+                       )}
+
                     </div>
 
                 </div>
@@ -174,33 +268,6 @@ const PostView = (user) => {
 
             }
 
-
-            <div className='comments'>
-
-                <div className='comments-add'>
-                    <textarea onChange={replyinput} placeholder="Add a comment to this post"></textarea>
-                    <button onClick={submitreply} className='add-comment'>Add a comment</button>
-                </div>
-
-                <div className='comment-section'>
-
-                    {post.replies ? (
-
-                        post.replies.map((reply) => (
-                            <div key = {reply.id}>
-                                <small>{reply.user} {userParsed.firstname}</small>
-
-                                <Comment userObj={userParsed} postIndex={postIndex} loggedIn={user.loggedInUser} content={reply}/>
-                            </div>
-                        ))
-
-                    ) :
-
-                        <div><h1>No comments on this post yet :)</h1></div>
-                    }
-                </div>
-
-            </div>
                         
         </div>
     )

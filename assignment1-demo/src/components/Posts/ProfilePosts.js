@@ -23,11 +23,6 @@ function ProfilePosts(user) {
                     <div className='posts-snippet'>
                         <Link key={post.id} to={`/PostView/${post.id}`}><h1>Title: {post.title}</h1></Link>
                         <p>Content: {post.body}</p>
-                        
-                        {/* <div className='post-buttons'>
-                            <button key={post.id} value={post.id} onClick={deletePost}>Delete post</button>
-                            <button key={post.id} value={post.id} onClick={editPost}>Edit post</button>
-                        </div> */}
                     </div>
                 ))
             }
