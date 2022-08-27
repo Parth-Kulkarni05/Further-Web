@@ -9,9 +9,9 @@ const PostView = (user) => {
     const [post, setPost] = useState("")
     const [postIndex, setPostIndex] = useState("")
     const [found, setFound] = useState(false)
-    const [userParsed] = useState(JSON.parse(localStorage.getItem(user.loggedInUser)))     // Re-usable
+    const [userParsed, setUserParsed] = useState(JSON.parse(localStorage.getItem(user.loggedInUser)))     // Re-usable
     const [edit, setEdit] = useState(false)
-    const [body, setBody] = useState('')
+    const [body, setBody] = useState(null)
     const [reply, setReply] = useState('')
     const [image, setImage] = useState(null)
     const [invalidimage, setInvalid] = useState(null)
@@ -34,6 +34,10 @@ const PostView = (user) => {
                 setFound(true)
             }
         }
+
+        console.log(userParsed)
+
+
 
 
     }
@@ -80,7 +84,13 @@ const PostView = (user) => {
             // Submits the data from the form into html localstorage
             // via setting a stringified json obj.
 
-        userParsed.posts[postIndex].body = body;
+        console.log(userParsed.posts[postIndex].body)
+
+        if (body != null) {
+            userParsed.posts[postIndex].body = body;
+        }
+
+        setUserParsed(userParsed)
         setPost(userParsed.posts[postIndex])
         localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))
         setEdit(false)
@@ -202,19 +212,26 @@ const PostView = (user) => {
                             
                             </div>
 
-                            <div className='image-rendering'>
-                                <img src={image} alt = '' className = 'image-rendered-post-view'></img>
+            }
 
-                                </div>
-                            
+
+            <div className='comments'>
+
+                <div className='comments-add'>
+                    <textarea onChange={replyinput} placeholder="Add a comment to this post"></textarea>
+                    <button onClick={submitreply} className='add-comment'>Add a comment</button>
+                </div>
+
+                <div className='comment-section'>
+
+
+                        post.replies.map((reply) => (
+                            <div key = {reply.id}>
+                                <small>{reply.user} {userParsed.firstname}</small>
+
+                                <Comment userObj={userParsed} postIndex={postIndex} loggedIn={user.loggedInUser} content={reply}/>
                             </div>
-
-                       )}
-
-
-
-                    
-                    </div>
+                        ))
 
                 </div>
             </div>
