@@ -35,7 +35,7 @@ const MultiAuth = ({loggedInUser}) =>{
         </div>
 
         <div className="button-continue-to-website">
-        <button onClick = {redirectToProfile}> Continue to Website</button>
+        <button className="multi-factor-button" onClick = {redirectToProfile}> Continue to Website</button>
         </div>
 
         </div>

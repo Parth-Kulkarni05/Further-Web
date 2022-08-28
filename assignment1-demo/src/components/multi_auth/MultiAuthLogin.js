@@ -69,7 +69,7 @@ const MultiAuthLogin = ({onLogin}) => {
             <form onSubmit={handleSubmit}>
             <input type= 'text' onChange={handleCodeInput} maxLength = {4}></input>
                 {checkCodeError()}
-            <button type='submit'> Submit</button>
+            <button className="multi-factor-button" type='submit'> Submit</button>
             </form>
            </div>
         
