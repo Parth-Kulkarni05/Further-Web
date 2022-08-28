@@ -142,9 +142,8 @@ const SignUp = ({onLogin}) => {
             }
 
 
-
             onLogin(email)
-            navigate('/Profile')
+            navigate('/MultiAuth')
         }
         else {
             localStorage.setItem("Login_Status", "false")
