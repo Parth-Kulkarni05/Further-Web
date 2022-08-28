@@ -15,7 +15,7 @@ function ProfilePosts(user) {
             {userParsed.posts.length > 0 ? (
                 <div><h1>{userParsed.firstname}'s posts</h1></div>
             ):
-                <div><h1>No posts to show :)</h1></div>
+                <div className='no-posts-to-show'><h1>No posts to show :)</h1></div>
             }
 
             {

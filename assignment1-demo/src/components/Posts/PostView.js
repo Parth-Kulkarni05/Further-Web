@@ -16,6 +16,7 @@ const PostView = (user) => {
     const [image, setImage] = useState('')
     let navigate = useNavigate();
     let ref = useRef();
+    let image_ref = useRef()
 
     
 
@@ -65,9 +66,6 @@ const PostView = (user) => {
     function editing(){
 
         setEdit(true)
-        setImage(post.image)
-        console.log(image)
-    
     };
 
     function removeSelectedImage(){
@@ -78,6 +76,10 @@ const PostView = (user) => {
 
     function handleImage(event){
         setImage(event.target.value)
+        console.log(image_ref.current.value)
+        post.image = image_ref.current.value
+        console.log("yoo", post.image)
+
     }
 
     function handleBrokenImage(){
@@ -89,16 +91,16 @@ const PostView = (user) => {
             // Submits the data from the form into html localstorage
             // via setting a stringified json obj.
 
-        event.preventDefault();
 
-        if (userParsed.posts[postIndex].body != null){
+        if ((userParsed.posts[postIndex].body != null) && (ref.current.value.length > 0)){
             userParsed.posts[postIndex].body = ref.current.value;     
             setUserParsed(userParsed)
             setPost(userParsed.posts[postIndex])
             localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))
             setEdit(false)
 
-            post.image = image;
+        } else{
+            window.alert("Post cannot be empty. ")
         }
 
 
@@ -124,6 +126,7 @@ const PostView = (user) => {
 
             setPost(userParsed.posts[postIndex])
             setReply("")
+            ref.current.value =  ''
         }
         
         
@@ -169,15 +172,20 @@ const PostView = (user) => {
 
             <div className='image-rendering'>
 
+                   {console.log(post.image)}
+
                     {post.image &&(
                       <img src={post.image} alt = '' className = 'image-rendered-post-view'></img>
                     )}
+
+    
+
             </div>
                         
             <div className='comments'>
 
             <div className='comments-add'>
-                <textarea onChange={replyinput} placeholder="Add a comment to this post"></textarea>
+                <textarea onChange={replyinput} placeholder="Add a comment to this post" ref = {ref}></textarea>
                 <button onClick={submitreply} className='add-comment'>Add a comment</button>
             </div>
 
@@ -187,8 +195,11 @@ const PostView = (user) => {
 
                     post.replies.map((reply) => (
                         <div key = {reply.id}>
-                            <small>{reply.user} {userParsed.firstname}</small>
-
+                            <hr color='gray' width = {900}></hr>
+                            <br></br>
+                            <small className='user-info-comment'><b>{reply.user} {userParsed.firstname} {userParsed.lastname}</b></small>
+                            <br></br>
+                            <br></br>
                             <Comment userObj={userParsed} postIndex={postIndex} loggedIn={user.loggedInUser} content={reply}/>
                         </div>
                     ))
@@ -225,7 +236,7 @@ const PostView = (user) => {
                     {!image && (           
                             <div className='post-buttons'>
                             <label>Add Image with Post -- Enter URL: (Can be Local or Image Address Sourced Online)</label>
-                            <input type="text" placeholder='https://...' className = 'image-upload-input' onChange = {handleImage} name ='upload'/>
+                            <input type="text" placeholder='https://...' className = 'image-upload-input' onChange = {handleImage} name ='upload' ref = {image_ref}/>
                         </div>
                     )}
 

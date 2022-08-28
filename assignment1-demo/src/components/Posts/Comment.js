@@ -81,7 +81,7 @@ function Comment(props) {
                         {content.replies.map((reply) => (
                             
                             <div className="comment" key={reply.id}>
-                                <small>{reply.user} {props.userObj.firstname}</small>
+                                <small><b>{reply.user} {props.userObj.firstname} {props.userObj.lastname}</b></small>
                                 <p>{reply.reply}</p>
                             </div>
                         ))}
