@@ -88,6 +88,10 @@
     font-size: small;
 }
 
+.comments-add button:hover{
+    opacity: 0.5;
+}
+
 .comments-add button {
     border-radius: 10px;
     border-style: none;

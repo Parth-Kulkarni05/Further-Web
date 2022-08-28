@@ -1,3 +1,11 @@
+.add-reply-button, .add-submit-button{
+    padding: 10px;
+}
+
+.add-reply-button:hover, .add-submit-button:hover{
+    opacity: 0.5;
+}
+
 
 .nested-comments {
     margin-top: 40px;

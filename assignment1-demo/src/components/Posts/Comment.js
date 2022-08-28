@@ -59,7 +59,7 @@ function Comment(props) {
         <p>{props.content.reply}</p>
 
         <br></br>
-        <button onClick={() => setReplying(true)}>Add reply</button>
+        <button className="add-reply-button" onClick={() => setReplying(true)}>Add reply</button>
 
         {replying ? (
 
@@ -67,7 +67,7 @@ function Comment(props) {
 
             <div>
                 <input placeholder="Enter reply" onChange={replytextinput}></input>
-                <button onClick={submitReply}>Submit</button>
+                <button className="add-submit-button" onClick={submitReply}>Submit</button>
             </div>
 
         ) :

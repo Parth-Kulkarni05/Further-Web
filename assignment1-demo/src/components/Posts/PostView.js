@@ -176,7 +176,7 @@ const PostView = (user) => {
                         {console.log(post.image)}
 
                             {post.image &&(
-                            <img src={post.image} alt = 'No visual to display' className = 'image-rendered-post-view'></img>
+                            <img src={post.image} alt = 'Displayed Visual' className = 'image-rendered-post-view'></img>
                             )}
 
                     </div>
@@ -237,43 +237,9 @@ const PostView = (user) => {
                         <button className='post-view-buttons' onClick={submit}>Submit</button>
                     </div>
 
-                    <div className='image-rendering'>
-                    
-                        <div className='box-rendering'>
-
-                            {!image && ( // If the image does not exist then render this
-                                <div className='post-buttons'>
-                                    <label>Add Image with Post -- Enter URL: (Can be Local or Image Address Sourced Online)</label>
-                                    <input type="text" placeholder='https://...' className = 'image-upload-input' onChange = {handleImage} name ='upload' ref = {image_ref}/>
-                                </div>
-                            )}
-
-                        </div>
-
-
-                        {image && (  // If the image does exist then render this. 
-                            <div className='image-rendering'>
-
-                                <div className='image-preview-container'>
-                                        <div className='image-cancel'>
-                                            <button onClick={removeSelectedImage} className = 'remove-image-button'> Remove This Image </button>
-                                        </div>  
-                                
-                                </div>
-
-                                <div className='image-rendering'>
-                                    <img src={image} onError = {handleBrokenImage} alt = 'No visual to display' className = 'image-rendered-post-view'></img>
-
-                                </div>
-                                
-                            </div>
-
-                        )}
-
                     </div>
 
                 </div>
-            </div>
 
             }
 
