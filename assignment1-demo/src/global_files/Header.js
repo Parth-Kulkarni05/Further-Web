@@ -22,14 +22,13 @@ const Header = ({loggedInUser, onLogout}) => {
               <Link to = "/Profile" className="links"><li>Profile Management</li></Link>
               <Link to = "/create" className="links"><li>Create post</li></Link>
               <Link to = "/ProfilePosts" className="links"><li>My Posts</li></Link>
-              <Link to = "/PublicPosts" className="links">Forum</Link>
             </ul>
             
               
         ) :
             <ul className = "nav-links">
                 <Link to = "/Signup" className="links"><li>Sign Up</li></Link>
-                <Link to = "/LoginPage" className="links"><li>Log In</li></Link>
+                <Link to = "/LoginPage" className="links"><li>Log In</li></Link> 
             </ul>
         }
 
