@@ -1,3 +1,6 @@
+
+// Validation rules for each input box of the sign-up form, using regex and checking localstorage.
+
 function emailError(state, email) {
     if ((state === false) && ((email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) === null)) && (email.length > 0)){
         return (
@@ -44,10 +47,10 @@ function passwordError(state, password){
         )
     }
     
-    
 }
 
-function emailCheck(email){
+    // Checks localstorage for valid email (corresponding to a user)
+function emailCheck(email) {
 
     let email_detected = false
     
@@ -82,7 +85,7 @@ function emailCheck_ProfileChange(original_email, updatedEmail){
 
 
 
-function date_generate(){
+function date_generate() {
 
     const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"];

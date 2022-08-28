@@ -7,6 +7,10 @@ import './MainContent.css'
 const Main = ({OnLogin, loggedInUser}) => {
 
     
+    // Main content component is displayed in the landing page
+    // giving information on the website and a sign-up button
+    // which is conditionally rendered, depending if a user is
+    // already signed in.
 
 
     return (

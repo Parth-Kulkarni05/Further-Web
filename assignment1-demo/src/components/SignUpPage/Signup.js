@@ -35,19 +35,6 @@ import {emailError, nameError, passwordError, emailCheck, date_generate} from '.
 
 const SignUp = ({onLogin}) => {
 
-    // HTML form notes
-
-    // If the name attribute is omitted, the 
-    // value of the input field will not be sent at all.
-
-    // - Setting variables for submit element, first and last name
-    // - Validating user data from input fields
-    // - Creating logic to store information from form to html local storage
-    // - navigate() hook, to allow redirects
-
-
-    // Callback - Child to parent
-
 
     const [firstname, setfirstname] = useState('')
     const [lastname, setlastname] = useState('')
@@ -56,7 +43,7 @@ const SignUp = ({onLogin}) => {
     const [password, setPassword] = useState('')
 
     useEffect(() => {
-        if (valid){
+        if (valid) {
             successful();
             redirect();
         }
@@ -66,7 +53,7 @@ const SignUp = ({onLogin}) => {
     let navigate = useNavigate();
 
 
-        // Saves input in state variables
+        // Saves input in state variables: triggered by onChange events 
     function firstnameinput(event) {
          setfirstname(event.target.value);
     }
@@ -83,14 +70,15 @@ const SignUp = ({onLogin}) => {
         setPassword(event.target.value)
     }
 
+        // Calls validate function: triggered by onSubmit event
     function submit(event) {
         event.preventDefault();
         validate()        
     }
 
 
-
-    function successful(){
+        // Visual cue for account registration
+    function successful() {
         if (valid === true){                
             toast.success('Sign-In Sucessful', {
                 toastId: 'success1',
@@ -98,10 +86,8 @@ const SignUp = ({onLogin}) => {
     }
     }
 
-        // Validates input
+        // Validates input and updates "valid" state's boolean accordingly.
     function validate() {
-
-        /* eslint-disable no-useless-escape */
 
         if(email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) && firstname.match(/^[a-zA-Z]+$/) 
             && lastname.match(/^[a-zA-Z]+$/) && password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/))
@@ -117,12 +103,14 @@ const SignUp = ({onLogin}) => {
         }   
     }
 
-    
+
     function redirect() {
 
-        if (valid) {
-            // Submits data to localstorage (if valid)
+        // Depends on "valid" state and is called in useEffect, for every render.
 
+        if (valid) {
+
+            // If true, submits data to localstorage
             localStorage.setItem(email,JSON.stringify({
                 firstname:firstname,
                 lastname:lastname,

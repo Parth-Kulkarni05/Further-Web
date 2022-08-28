@@ -4,7 +4,7 @@ import "./ProfilePosts.css"
 
 function ProfilePosts(user) {
 
-    // Should show the posts from a specific user
+    // Shows the posts from a specific user
 
     const [userParsed] = useState(JSON.parse(localStorage.getItem(user.loggedInUser)))
 
@@ -19,8 +19,11 @@ function ProfilePosts(user) {
             }
 
             {
+
                 userParsed.posts.map((post) =>(
                     <div className='posts-snippet'>
+
+                        {/* Creates multiple links (to PostView.js component) with the post id in the url to identify each post*/}
                         <Link key={post.id} to={`/PostView/${post.id}`} className = 'profile-post-links'><h1>Title: {post.title}</h1></Link>
                         <p>Content: {post.body}</p>
                     </div>

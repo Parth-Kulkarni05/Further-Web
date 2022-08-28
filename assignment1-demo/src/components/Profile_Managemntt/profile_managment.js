@@ -1,7 +1,7 @@
-import { BrowserRouter, NavLink, Routes, Route, useNavigate, Link } from 'react-router-dom';
-import React, { useState, useEffect, Redirect, Navigate} from "react";
+import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
 import './profile_manage.css';
-import {emailError, nameError, emailCheck_ProfileChange } from '../Validation_rules/validation'
+import { emailError, nameError, emailCheck_ProfileChange } from '../Validation_rules/validation'
 
 
 
@@ -11,50 +11,49 @@ const ProfileManage = ({loggedInUser, onLogin}) => {
     const userInfo = localStorage.getItem(loggedInUser)
     const userParsed = JSON.parse(userInfo)
     const imageLink = userParsed['profile_pic']
-
-    let navigate = useNavigate();
-
     const[updatedfirstname, setnewfirstname] = useState(userParsed.firstname)
     const[updatedlastname, setnewlastname] = useState(userParsed.lastname)
     const originalemail = userParsed.email
     const[updatedemail, setnewemail] = useState(userParsed.email) 
     const[valid, setValid] = useState(null)
+    const navigate = useNavigate();
+
 
     useEffect(() =>{
-        if (valid){
+        if (valid) {
             redirect();
         }
 
     })
 
     
-    function setfirstName(e){
+    function setfirstName(e) {
         setnewfirstname(e.target.value);
 
     }
 
-    function setlastName(e){
+    function setlastName(e) {
         setnewlastname(e.target.value);
     }
 
-    function setemail(e){
+    function setemail(e) {
         setnewemail(e.target.value);
     }
 
-    function handleSave(e){
+    function handleSave(e) {
         e.preventDefault();
         validate();
 
     }
 
-    function cancelChanges(){
+    function cancelChanges() {
         navigate(-1)
     
     }
 
-    function validate(){
+        // Validates updated information
+    function validate() {
 
-        /* eslint-disable no-useless-escape */
 
         if (updatedemail.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) && updatedfirstname.match(/^[a-zA-Z]+$/) 
             && updatedlastname.match(/^[a-zA-Z]+$/))
@@ -72,10 +71,10 @@ const ProfileManage = ({loggedInUser, onLogin}) => {
     }
 
 
+        // Updates user information and sets it in localstorage, if valid is set to true
+    function redirect() {
 
-    function redirect(){
-
-        if (valid){
+        if (valid) {
 
             userParsed.firstname = updatedfirstname;
             userParsed.lastname = updatedlastname;
@@ -83,18 +82,13 @@ const ProfileManage = ({loggedInUser, onLogin}) => {
 
 
             localStorage.removeItem(loggedInUser)
-
-            // Reset all the posts and replies' email of the user to the updated email
-            // by iterating through all of them and changing their user (email) attribute
-
             localStorage.setItem(updatedemail, JSON.stringify(userParsed))
             onLogin(updatedemail)
 
             navigate('/Profile')
 
         }
-
-        else{
+        else {
             console.log("okay expected error")
         }
     }

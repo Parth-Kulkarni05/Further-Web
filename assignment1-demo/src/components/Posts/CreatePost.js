@@ -11,6 +11,7 @@ function CreatePost(user) {
     const navigate = useNavigate()
     const ref = useRef(null)
 
+
     function bodyinput(event) {
         setBody(event.target.value)
     }
@@ -20,22 +21,22 @@ function CreatePost(user) {
     }
 
     function handleImage(event) {
-
         setImage(event.target.value)
     }
 
-    function removeSelectedImage(){
+    // Removes image from page using ref hook
+    function removeSelectedImage() {
         setImage('')
         ref.current.value = ''
-
     }
 
-    function handleBrokenImage(){
+    function handleBrokenImage() {
         setImage(null)
         setInvalid(true)
     }
 
-    function displayError(){
+        // Displays error if image is Broken
+    function displayError() {
 
         if ((setInvalid) && (image === null)){
             return (
@@ -48,7 +49,7 @@ function CreatePost(user) {
                 <div className='AlertMessage'> Image Loaded Below</div>
             )
         }
-}
+    }
 
 
 
@@ -66,8 +67,7 @@ function CreatePost(user) {
         }
         else {
 
-            console.log(image)
-
+            // Post is valid and added to localstorage
         
             const post = {
                 title: title,
@@ -77,16 +77,11 @@ function CreatePost(user) {
                 replies: [],
                 image: image.length > 0 ? image : false
             }
-
-            console.log(post)
             
 
             let userParsed = JSON.parse(localStorage.getItem(user.loggedInUser))    // Extracts users object of information for updating into object
-        
             userParsed.posts.push(post)
-
             localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))     // Updates the user JSON object
-
 
             navigate("/ProfilePosts")
             alert("New post created!")
@@ -146,7 +141,7 @@ function CreatePost(user) {
                     <div className='image-container'>
                         <div className='image-cancel'>
 
-                             <img src={(image)} onError={handleBrokenImage} alt = '' className='preview-resize' height={1000} width = {700}></img>
+                             <img src={(image)} onError={handleBrokenImage} alt = 'No visual to display' className='preview-resize' height={1000} width = {700}></img>
 
                         </div>
                     </div>

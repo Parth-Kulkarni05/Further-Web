@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useState } from "react";
 import "./Comment.css"
 
 function Comment(props) {
@@ -14,7 +14,7 @@ function Comment(props) {
 
     function submitReply() {
 
-        // Switches the whole JSON post object in local storage
+        // Updates the whole JSON post object in local storage
         // with updated information (the threded reply)
 
 
@@ -44,9 +44,9 @@ function Comment(props) {
 
             setReplyText("")
             setReplying(false)
-        // console.log(replyObj)
-        // window.location.reload()
-       } else{
+
+       } 
+       else{
         window.alert("Replies cannot be empty!")
        }
     
