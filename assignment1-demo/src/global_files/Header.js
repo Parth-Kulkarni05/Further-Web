@@ -5,8 +5,10 @@ import './Header.css'
 
 const Header = ({loggedInUser, onLogout}) => {
 
-    // Show account status in the header.
+    // Shows links to different web pages depending on the login status
+    // of the client viewing the website.
 
+    
      return (
 
       <div className = "navbar-container">
@@ -14,7 +16,9 @@ const Header = ({loggedInUser, onLogout}) => {
       <div className = "nav-logo">
           <Link to = "/"><img src = "/images/Header/header_logo.png" alt=""></img></Link>
       </div>
-      
+        
+        {/* loggedInUser (string: email) dictates the conditional view */}
+        
         {loggedInUser ? ( 
       
             <ul className = "nav-links">

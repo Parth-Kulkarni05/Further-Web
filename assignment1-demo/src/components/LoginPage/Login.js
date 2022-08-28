@@ -12,8 +12,7 @@ function Login ({onLogin}){
     const [valid, setValid] = useState(null)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
-    let navigate = useNavigate();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (valid){
@@ -32,13 +31,13 @@ function Login ({onLogin}){
         setPassword(event.target.value)
     }
 
-     
+    //  Responsible for the visual cue of logging in for the user
     function success() {
         if (valid === true){                
             toast.success('Log-In Sucessful', {
                 toastId: 'success1',
             })
-    }
+        }
     }
 
     
@@ -50,6 +49,8 @@ function Login ({onLogin}){
         
 
         // Validates input
+        // Searches the local storage. linearly, to check if user-entered data exists.
+        
     function validate() {
 
         let key_local_storage = null
@@ -60,16 +61,13 @@ function Login ({onLogin}){
             if (key_local_storage.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
 
                 let json_obj = (localStorage.getItem(key_local_storage))
-
-                console.log(json_obj)
-
                 let json_parsed = JSON.parse(json_obj)    
 
-                console.log(json_parsed)
-                
+                    // If the email and password match any given instance in the local storage, then
+                    // Valid is set to true
                 if (email === key_local_storage && password === json_parsed['password']){
                     key_local_storage = true
-                    setValid(true)
+                    setValid(true)          
                     console.log("Login Sucessful")
                     break
                 }
@@ -82,7 +80,7 @@ function Login ({onLogin}){
         }
 
 
-        }   
+    }   
 
 
     function redirect() {

@@ -30,15 +30,12 @@ const PostView = (user) => {
 
 
         for (let i=0; i < userParsed.posts.length; ++i) {
-            if (userParsed.posts[i].id === parseInt(idObj.id)) {
+            if (userParsed.posts[i].id === parseInt(idObj.id)) {      // Compares id of post object in localstorage and id stored in URL
                 setPost(userParsed.posts[i])
                 setPostIndex(i)
                 setFound(true)
             }
         }
-        
-
-
 
     }
 
@@ -53,6 +50,7 @@ const PostView = (user) => {
 
 
     function deletePost(event) {
+
             // Deletes the post (using the postsIndex to find
             // which post to delete)
             
@@ -64,7 +62,6 @@ const PostView = (user) => {
     }
 
     function editing(){
-
         setEdit(true)
     };
 
@@ -88,18 +85,21 @@ const PostView = (user) => {
 
 
     function submit(event) {
+
             // Submits the data from the form into html localstorage
             // via setting a stringified json obj.
 
 
         if ((userParsed.posts[postIndex].body != null) && (ref.current.value.length > 0)){
+
             userParsed.posts[postIndex].body = ref.current.value;     
             setUserParsed(userParsed)
             setPost(userParsed.posts[postIndex])
             localStorage.setItem(user.loggedInUser, JSON.stringify(userParsed))
             setEdit(false)
 
-        } else{
+        } 
+        else{
             window.alert("Post cannot be empty. ")
         }
 
@@ -109,6 +109,10 @@ const PostView = (user) => {
 
     function submitreply() {
 
+        // Creates reply object from reply state, adds it to JSON object of
+        // user and saves it back to localstorage. reply and post states are
+        // reset. 
+
         const replyObj = {
             reply: reply,
             user: user.loggedInUser,
@@ -117,7 +121,6 @@ const PostView = (user) => {
             replies: [],
         }
 
-        console.log(reply)
 
         if (reply.length > 0) {
 
@@ -159,64 +162,67 @@ const PostView = (user) => {
             
             {edit === false ? (
 
-                // Show only delete and edit options
+                // If edit is false, show only delete and edit options
 
             
-            <div className='post-upper'>
-                <p className='post-body'>{post.body}</p>
-                <div className='post-buttons'>
-                    <button value={post.id} onClick={deletePost}>Delete post</button>
-                    <button value={post.id} onClick={editing}>Edit post</button>
-                </div>
+                <div className='post-upper'>
+                    <p className='post-body'>{post.body}</p>
+                    <div className='post-buttons'>
+                        <button value={post.id} onClick={deletePost}>Delete post</button>
+                        <button value={post.id} onClick={editing}>Edit post</button>
+                    </div>
 
 
-            <div className='image-rendering'>
+                    <div className='image-rendering'>
 
-                   {console.log(post.image)}
+                        {console.log(post.image)}
 
-                    {post.image &&(
-                      <img src={post.image} alt = '' className = 'image-rendered-post-view'></img>
-                    )}
+                            {post.image &&(
+                            <img src={post.image} alt = 'No visual to display' className = 'image-rendered-post-view'></img>
+                            )}
 
-    
+                    </div>
+                            
+                    <div className='comments'>
 
-            </div>
-                        
-            <div className='comments'>
-
-            <div className='comments-add'>
-                <textarea onChange={replyinput} placeholder="Add a comment to this post" ref = {ref}></textarea>
-                <button onClick={submitreply} className='add-comment'>Add a comment</button>
-            </div>
-
-            <div className='comment-section'>
-
-                {post.replies ? (
-
-                    post.replies.map((reply) => (
-                        <div key = {reply.id}>
-                            <hr color='gray' width = {900}></hr>
-                            <br></br>
-                            <small className='user-info-comment'><b>{reply.user} {userParsed.firstname} {userParsed.lastname}</b></small>
-                            <br></br>
-                            <br></br>
-                            <Comment userObj={userParsed} postIndex={postIndex} loggedIn={user.loggedInUser} content={reply}/>
+                        <div className='comments-add'>
+                            <textarea onChange={replyinput} placeholder="Add a comment to this post" ref = {ref}></textarea>
+                            <button onClick={submitreply} className='add-comment'>Add a comment</button>
                         </div>
-                    ))
 
-                ) :
+                        <div className='comment-section'>
 
-                    <div><h1>No comments on this post yet :)</h1></div>
-                }
-            </div>
+                            {post.replies ? (
 
-            </div>
-        
-            </div>
- 
+                                post.replies.map((reply) => (
+                                    <div key = {reply.id}>
+                                        <hr color='gray' width = {900}></hr>
+                                        <br></br>
+                                        <small className='user-info-comment'><b>{reply.user} {userParsed.firstname} {userParsed.lastname}</b></small>
+                                        <br></br>
+                                        <br></br>
+                                        <Comment userObj={userParsed} postIndex={postIndex} loggedIn={user.loggedInUser} content={reply}/>
+                                            {/* New componenet, Comment, to render the comments to a post with following props */}
+
+                                    </div>
+                                ))
+
+                            ) :
+
+                                <div><h1>No comments on this post yet :)</h1></div>
+
+                            }
+                            
+                        </div>
+
+                    </div>
+            
+                </div>
+    
             ) : 
 
-                // Else, show body in textarea for editing and submit button
+                // Else if edit is true, show body in textarea for editing, submit button and image.
+
 
             <div>
                 <div className='post-upper'>
@@ -230,41 +236,36 @@ const PostView = (user) => {
 
                     <div className='image-rendering'>
                     
-                    <div className='box-rendering'>
+                        <div className='box-rendering'>
 
-                    
-                    {!image && (           
-                            <div className='post-buttons'>
-                            <label>Add Image with Post -- Enter URL: (Can be Local or Image Address Sourced Online)</label>
-                            <input type="text" placeholder='https://...' className = 'image-upload-input' onChange = {handleImage} name ='upload' ref = {image_ref}/>
+                            {!image && ( 
+                                <div className='post-buttons'>
+                                    <label>Add Image with Post -- Enter URL: (Can be Local or Image Address Sourced Online)</label>
+                                    <input type="text" placeholder='https://...' className = 'image-upload-input' onChange = {handleImage} name ='upload' ref = {image_ref}/>
+                                </div>
+                            )}
+
                         </div>
-                    )}
 
 
-                    
-                    </div>
-
-
-
-
-                    {image &&(    
-                        <div className='image-rendering'>
-
-                            <div className='image-preview-container'>
-                                    <div className='image-cancel'>
-                                        <button onClick={removeSelectedImage} className = 'remove-image-button'> Remove This Image </button>
-                                    </div>  
-                            
-                            </div>
-
+                        {image && (    
                             <div className='image-rendering'>
-                                <img src={image} onError = {handleBrokenImage} alt = '' className = 'image-rendered-post-view'></img>
+
+                                <div className='image-preview-container'>
+                                        <div className='image-cancel'>
+                                            <button onClick={removeSelectedImage} className = 'remove-image-button'> Remove This Image </button>
+                                        </div>  
+                                
+                                </div>
+
+                                <div className='image-rendering'>
+                                    <img src={image} onError = {handleBrokenImage} alt = 'No visual to display' className = 'image-rendered-post-view'></img>
 
                                 </div>
-                            
+                                
                             </div>
 
-                       )}
+                        )}
 
                     </div>
 

@@ -17,6 +17,7 @@ import MultiAuthLogin from "./components/multi_auth/MultiAuthLogin";
 
 function App() {
 
+  // The website distinguishes current logged in users based on their emails, stored in "loggedInUser"
   const [loggedInUser, setLoggedInUser] = useState(localStorage.getItem("loggedInUser"))
   
   const onLogin = (email) => {
@@ -52,7 +53,6 @@ function App() {
           </Route>
           <Route path="/create" element={<CreatePost loggedInUser = {loggedInUser}/>}></Route>
         </Routes>
-        
 
         <Footer></Footer>
       
