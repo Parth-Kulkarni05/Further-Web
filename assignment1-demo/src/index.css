@@ -1,6 +1,14 @@
+/* This file contains all the global css variables that are applied to / used by other components */
+
 *{
     margin: 0;
     padding: 0;
     
   }
-  
+
+
+.AlertMessage{
+  font-size: 15px;
+  font-weight: bold;
+  color: red;
+}

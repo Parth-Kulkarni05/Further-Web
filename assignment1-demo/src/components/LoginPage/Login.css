@@ -25,12 +25,6 @@
   padding: 20px;
 }   
   
-.AlertMessage{
-    font-size: 15px;
-    font-weight: bold;
-    color: red;
- }
-
 .login-box{
     display: flex;
     flex-direction: column;
