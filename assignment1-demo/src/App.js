@@ -13,6 +13,7 @@ import ProfilePosts from "./components/Posts/ProfilePosts";
 import CreatePost from "./components/Posts/CreatePost";
 import PostView from "./components/Posts/PostView";
 import MultiAuth from "./components/multi_auth/MultiAuth"
+import MultiAuthLogin from "./components/multi_auth/MultiAuthLogin";
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="/SignUp" element={<SignUp onLogin = {onLogin} />}></Route>  
           <Route path="/MultiAuth" element={<MultiAuth onLogin = {onLogin} loggedInUser = {loggedInUser}/>}></Route>         
           <Route path="/LoginPage" element={<LoginPage onLogin = {onLogin} />}></Route>
+          <Route path = "/MultiAuthLogin" element={<MultiAuthLogin onLogin = {onLogin} loggedInUser = {loggedInUser}/>}></Route>
           <Route path="/Profile" element={<Profile loggedInUser = {loggedInUser} onLogout = {onLogout} />}></Route>
           <Route path="/ProfileManage" element={<ProfileManage loggedInUser = {loggedInUser} onLogin = {onLogin} />}></Route>
           <Route path="/ProfilePosts" element={<ProfilePosts loggedInUser = {loggedInUser}/>}></Route>

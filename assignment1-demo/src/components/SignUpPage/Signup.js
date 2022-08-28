@@ -141,7 +141,10 @@ const SignUp = ({onLogin}) => {
                 }))
             }
 
+            const accountSid = 'AC8acd9620acce0908582f2727ef274007'; // Your Account SID from www.twilio.com/console
+            const authToken = '8760deb88d6f05ca19150b8265a67d5d'; // Your Auth Token from www.twilio.com/console
 
+        
             onLogin(email)
             navigate('/MultiAuth')
         }
