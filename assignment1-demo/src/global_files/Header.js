@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import { BrowserRouter, NavLink, Routes, Route } from 'react-router-dom'
 import './Header.css'
 
 const Header = ({loggedInUser, onLogout}) => {

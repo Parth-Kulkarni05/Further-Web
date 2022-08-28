@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import './profile_manage.css';
 import { emailError, nameError, emailCheck_ProfileChange } from '../Validation_rules/validation'
 
@@ -19,7 +19,8 @@ const ProfileManage = ({loggedInUser, onLogin}) => {
     const navigate = useNavigate();
 
 
-    useEffect(() =>{
+    useEffect(() =>{  // As soon as valid is set to true the the useEffect function is executed
+        
         if (valid) {
             redirect();
         }
@@ -74,8 +75,6 @@ const ProfileManage = ({loggedInUser, onLogin}) => {
         // Updates user information and sets it in localstorage, if valid is set to true
     function redirect() {
 
-        if (valid) {
-
             userParsed.firstname = updatedfirstname;
             userParsed.lastname = updatedlastname;
             userParsed.email = updatedemail;
@@ -88,14 +87,7 @@ const ProfileManage = ({loggedInUser, onLogin}) => {
             navigate('/Profile')
 
         }
-        else {
-            console.log("okay expected error")
-        }
-    }
-
-
-
-
+    
 
     return(
         <div className='profile-container-manage'>

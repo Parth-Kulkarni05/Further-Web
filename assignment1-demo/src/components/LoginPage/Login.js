@@ -1,13 +1,11 @@
-/* eslint-disable no-useless-escape */
-import { BrowserRouter, NavLink, Routes, Route, useNavigate, Link } from 'react-router-dom';
-import React, { useState, useEffect, Redirect, Navigate} from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+/* eslint-disable no-useless-escape */ // This was used to due es lint giving weird weird with regex expressions.
+import {useNavigate, Link } from 'react-router-dom';
+import React, { useState, useEffect} from "react";
 import './Login.css';
 import {error_Login} from '../Validation_rules/validation'
 
 
-function Login ({onLogin}){
+function Login (){
     
     const [valid, setValid] = useState(null)
     const [email, setEmail] = useState('')
@@ -15,8 +13,7 @@ function Login ({onLogin}){
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (valid){
-            success()
+        if (valid){  // Once the Valid is set to True the redirect function is called.
             redirect()
         }
     }) 
@@ -32,14 +29,6 @@ function Login ({onLogin}){
     }
 
     //  Responsible for the visual cue of logging in for the user
-    function success() {
-        if (valid === true){                
-            toast.success('Log-In Sucessful', {
-                toastId: 'success1',
-            })
-        }
-    }
-
     
     function submit(event) {
         event.preventDefault();
@@ -58,7 +47,8 @@ function Login ({onLogin}){
         for (let i = 0; i < localStorage.length; i++){
             key_local_storage = localStorage.key(i);
 
-            if (key_local_storage.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
+            if (key_local_storage.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){ // Checks whether the key is an email. If it's an email then it continues. 
+                                                                                           // Reason it checks if it's a email due to JSON.Parse function work correctly.
 
                 let json_obj = (localStorage.getItem(key_local_storage))
                 let json_parsed = JSON.parse(json_obj)    
@@ -85,13 +75,11 @@ function Login ({onLogin}){
 
     function redirect() {
 
-        if (valid) {
-            onLogin(email)
-            navigate('/Profile')
-        }
-        else {
-            localStorage.setItem("Login_Status", "false")
-        }
+            navigate('/MultiAuthLogin', { // Sends the User Email through the navigate function, so then it can be used by the MultiAuthLogin Component
+                state: {
+                    email
+                }
+            })
     }
 
 

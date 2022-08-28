@@ -1,7 +1,10 @@
+/* This component essentially generates a random 4 digit code and that code is saved in Local Storage under the user's key */
+
+
 import { useNavigate } from "react-router-dom"
 import './multi_auth.css'
 
-const MultiAuth = ({onLogin, loggedInUser}) =>{
+const MultiAuth = ({loggedInUser}) =>{
 
     let navigate = useNavigate()
 
@@ -11,11 +14,7 @@ const MultiAuth = ({onLogin, loggedInUser}) =>{
 
     user_parsed = JSON.parse(user_parsed)
 
-    console.log("hey i am the before one", user_parsed)
-
     user_parsed.code = random_digit
-
-    console.log(user_parsed)
 
     localStorage.setItem(loggedInUser, JSON.stringify(user_parsed) )
 
@@ -23,10 +22,6 @@ const MultiAuth = ({onLogin, loggedInUser}) =>{
     function redirectToProfile(){
         navigate('/Profile')
     }
-
-
-
-    console.log("in here")
 
     return(
         <div className="multi-factor-container">

@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from "react";
 import {Link} from 'react-router-dom';
-import Header from "../../global_files/Header";
-import Footer from "../../global_files/Footer";
 import './MainContent.css'
 
-const Main = ({OnLogin, loggedInUser}) => {
+const Main = ({loggedInUser}) => {
 
     
     // Main content component is displayed in the landing page

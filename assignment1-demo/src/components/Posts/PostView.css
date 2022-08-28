@@ -8,7 +8,7 @@
     margin: 0px 220px;
 }
 
-.post-title{
+.post-title, .post-created-by{
     text-align: center;
 }
 
@@ -26,6 +26,7 @@
     padding: 24px 30px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 10px;
+    font-size: 20px;
 }
 
 .post-upper textarea {
@@ -49,14 +50,14 @@
     align-items: center;
 }
 
-button {
+.post-view-buttons{
     border-radius: 10px;
     border-style: none;
     padding: 10px;
     box-shadow: rgba(3, 3, 3, 0.2) 0px 7px 29px 0px;
 }
 
-button:hover {
+.post-view-buttons:hover {
     opacity: 0.5;
 }
 
@@ -97,14 +98,12 @@ button:hover {
 }
 
 .comments-add textarea {
-    width: auto;
-    height: auto;
-    padding: 12px 20px;
+    resize: none;
     align-self: center;
     box-shadow: rgba(3, 3, 3, 0.2) 0px 7px 29px 0px;
-    outline: none;
     border: none;
     border-radius: 10px;
+    font-size: 15px;
 }
 
 
@@ -118,4 +117,21 @@ button:hover {
 
 .user-info-comment{
     font-size: 15px;
+}
+
+.image-text{
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.profile-picture-comments{
+    border-radius: 50%;
+    height: 80px;
+}
+
+.comment-text{
+    display: flex;
+    margin-left: 110px;
+    margin-top: -50px;
 }

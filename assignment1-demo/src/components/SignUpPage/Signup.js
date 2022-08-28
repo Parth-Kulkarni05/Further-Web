@@ -1,6 +1,6 @@
-import { BrowserRouter, NavLink, Routes, Route, useNavigate, Link } from 'react-router-dom';
-import React, { useState, useEffect, Redirect, Navigate} from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate, Link } from 'react-router-dom';
+import React, { useState, useEffect,} from "react";
+import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Signup.css'
 import profile_pic_default_base64_encoding from './default_pfp';
@@ -108,8 +108,6 @@ const SignUp = ({onLogin}) => {
 
         // Depends on "valid" state and is called in useEffect, for every render.
 
-        if (valid) {
-
             // If true, submits data to localstorage
             localStorage.setItem(email,JSON.stringify({
                 firstname:firstname,
@@ -128,18 +126,11 @@ const SignUp = ({onLogin}) => {
                     posts: []
                 }))
             }
-
-            const accountSid = 'AC8acd9620acce0908582f2727ef274007'; // Your Account SID from www.twilio.com/console
-            const authToken = '8760deb88d6f05ca19150b8265a67d5d'; // Your Auth Token from www.twilio.com/console
-
         
             onLogin(email)
             navigate('/MultiAuth')
         }
-        else {
-            localStorage.setItem("Login_Status", "false")
-        }
-    }
+
 
 
     return (

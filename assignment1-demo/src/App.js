@@ -2,7 +2,7 @@ import Header from "./global_files/Header";
 import MainContent from "./components/LandingPage/MainContent"
 import Footer from "./global_files/Footer";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import SignUp from "./components/SignUpPage/signup.js"
+import SignUp from "./components/SignUpPage/Signup.js"
 import LoginPage from "./components/LoginPage/Login"
 import Profile from "./components/Profile_Page/Profile";
 import { ToastContainer } from 'react-toastify';
@@ -40,10 +40,10 @@ function App() {
         <Header loggedInUser = {loggedInUser} onLogout = {onLogout} />
 
         <Routes>
-          <Route path="/" element={<MainContent onLogin = {onLogin} loggedInUser = {loggedInUser}/>}></Route>
+          <Route path="/" element={<MainContent loggedInUser = {loggedInUser}/>}></Route>
           <Route path="/SignUp" element={<SignUp onLogin = {onLogin} />}></Route>  
-          <Route path="/MultiAuth" element={<MultiAuth onLogin = {onLogin} loggedInUser = {loggedInUser}/>}></Route>         
-          <Route path="/LoginPage" element={<LoginPage onLogin = {onLogin} />}></Route>
+          <Route path="/MultiAuth" element={<MultiAuth loggedInUser = {loggedInUser}/>}></Route>         
+          <Route path="/LoginPage" element={<LoginPage/>}></Route>
           <Route path = "/MultiAuthLogin" element={<MultiAuthLogin onLogin = {onLogin} loggedInUser = {loggedInUser}/>}></Route>
           <Route path="/Profile" element={<Profile loggedInUser = {loggedInUser} onLogout = {onLogout} />}></Route>
           <Route path="/ProfileManage" element={<ProfileManage loggedInUser = {loggedInUser} onLogin = {onLogin} />}></Route>

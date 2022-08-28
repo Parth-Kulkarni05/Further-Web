@@ -1,6 +1,8 @@
 
 // Validation rules for each input box of the sign-up form, using regex and checking localstorage.
 
+/*eslint-disable no-useless-escape */
+
 function emailError(state, email) {
     if ((state === false) && ((email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) === null)) && (email.length > 0)){
         return (

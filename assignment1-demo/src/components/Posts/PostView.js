@@ -67,15 +67,12 @@ const PostView = (user) => {
 
     function removeSelectedImage(){
         setImage(null)
-        userParsed.posts[postIndex].image = false
     
     }
 
     function handleImage(event){
         setImage(event.target.value)
-        console.log(image_ref.current.value)
-        post.image = image_ref.current.value
-        console.log("yoo", post.image)
+        post.image = image_ref.current.value // Assign the post.image with the current URL.
 
     }
 
@@ -155,7 +152,8 @@ const PostView = (user) => {
 
         <div className='post-view'>
 
-            <h1 className='post-title'>{post.title}</h1>
+            <h1 className='post-title'>{post.title}</h1> 
+            <small className='post-created-by'> Post Created by: {userParsed.firstname} {userParsed.lastname}</small>
             <br></br>
 
 
@@ -168,8 +166,8 @@ const PostView = (user) => {
                 <div className='post-upper'>
                     <p className='post-body'>{post.body}</p>
                     <div className='post-buttons'>
-                        <button value={post.id} onClick={deletePost}>Delete post</button>
-                        <button value={post.id} onClick={editing}>Edit post</button>
+                        <button className='post-view-buttons' value={post.id} onClick={deletePost}>Delete post</button>
+                        <button className='post-view-buttons' value={post.id} onClick={editing}>Edit post</button>
                     </div>
 
 
@@ -198,11 +196,16 @@ const PostView = (user) => {
                                     <div key = {reply.id}>
                                         <hr color='gray' width = {900}></hr>
                                         <br></br>
-                                        <small className='user-info-comment'><b>{reply.user} {userParsed.firstname} {userParsed.lastname}</b></small>
+                                        <div className='image-text'>
+                                        {<img className='profile-picture-comments' src={`data:image/jpg;base64,${userParsed.profile_pic}`} alt = 'User Chosen Profile'></img>}
+                                        <small className='user-info-comment'><b> {reply.user} {userParsed.firstname} {userParsed.lastname}</b></small>
+                                        </div>
                                         <br></br>
                                         <br></br>
+                                        <div className='comment-text'>
                                         <Comment userObj={userParsed} postIndex={postIndex} loggedIn={user.loggedInUser} content={reply}/>
                                             {/* New componenet, Comment, to render the comments to a post with following props */}
+                                        </div>
 
                                     </div>
                                 ))
@@ -231,14 +234,14 @@ const PostView = (user) => {
             
                     
                     <div className='post-buttons'>
-                        <button onClick={submit}>Submit</button>
+                        <button className='post-view-buttons' onClick={submit}>Submit</button>
                     </div>
 
                     <div className='image-rendering'>
                     
                         <div className='box-rendering'>
 
-                            {!image && ( 
+                            {!image && ( // If the image does not exist then render this
                                 <div className='post-buttons'>
                                     <label>Add Image with Post -- Enter URL: (Can be Local or Image Address Sourced Online)</label>
                                     <input type="text" placeholder='https://...' className = 'image-upload-input' onChange = {handleImage} name ='upload' ref = {image_ref}/>
@@ -248,7 +251,7 @@ const PostView = (user) => {
                         </div>
 
 
-                        {image && (    
+                        {image && (  // If the image does exist then render this. 
                             <div className='image-rendering'>
 
                                 <div className='image-preview-container'>
