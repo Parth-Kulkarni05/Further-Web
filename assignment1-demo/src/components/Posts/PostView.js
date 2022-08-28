@@ -13,11 +13,8 @@ const PostView = (user) => {
     const [edit, setEdit] = useState(false)
     const [body, setBody] = useState(null)
     const [reply, setReply] = useState('')
-    const [image, setImage] = useState('')
     let navigate = useNavigate();
     let ref = useRef();
-    let image_ref = useRef()
-
     
 
     function getPostFromParams() {
@@ -64,22 +61,6 @@ const PostView = (user) => {
     function editing(){
         setEdit(true)
     };
-
-    function removeSelectedImage(){
-        setImage(null)
-    
-    }
-
-    function handleImage(event){
-        setImage(event.target.value)
-        post.image = image_ref.current.value // Assign the post.image with the current URL.
-
-    }
-
-    function handleBrokenImage(){
-        setImage(null)
-    }
-
 
     function submit(event) {
 
