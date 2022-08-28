@@ -66,7 +66,7 @@ function Comment(props) {
                 // Show input for reply to the reply
 
             <div>
-                <input placeholder="Enter reply" onChange={replytextinput}></input>
+                <input className="submit-reply-input" placeholder="Enter reply" onChange={replytextinput}></input>
                 <button className="add-submit-button" onClick={submitReply}>Submit</button>
             </div>
 

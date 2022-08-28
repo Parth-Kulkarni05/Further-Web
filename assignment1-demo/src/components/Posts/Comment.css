@@ -6,6 +6,11 @@
     opacity: 0.5;
 }
 
+.submit-reply-input{
+    height: 10px;
+    padding: 10px;
+}
+
 
 .nested-comments {
     margin-top: 40px;

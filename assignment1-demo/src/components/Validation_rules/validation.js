@@ -6,7 +6,7 @@
 function emailError(state, email) {
     if ((state === false) && ((email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) === null)) && (email.length > 0)){
         return (
-            <div className='AlertMessage'>Error: Make sure email formatting is correct or not empty! </div>
+            <div className='AlertMessage'>Error: Make sure email formatting is correct! </div>
         )
     } else if ((state === false) && (email.length === 0)){
         return(
@@ -20,7 +20,7 @@ function emailError(state, email) {
 function nameError(state, nameType){
     if ((state === false) && ((nameType.match(/^[a-zA-Z]+$/) === null)) && (nameType.length > 0)){
         return (
-            <div className='AlertMessage'>Error: Remove numbers or symbols from name</div>
+            <div className='AlertMessage'>Error: Remove numbers or symbols or spaces from name</div>
         )
 
     } 

@@ -56,7 +56,7 @@ const MultiAuthLogin = ({onLogin}) => {
     function checkCodeError(){                          // If the user inputted code is incorrect the following error is displayed.
         if (valid === false){
             return(
-                <div className="Alert-Message">You entered the incorrect code.</div>
+                <div className="AlertMessage">You entered the incorrect code.</div>
             )
         }
 
